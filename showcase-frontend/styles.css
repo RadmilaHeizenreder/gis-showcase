@@ -1,0 +1,30 @@
+.logo-container {
+    background-color: #F0F1F5;
+}
+#logo-text{
+    color: #3C506E;
+}
+.nav-container {
+    background-color: #3C506E;
+    position: relative; /* Positionierung relativ zur normalen Dokumentenfluss */
+    z-index: 2; /* Stellen Sie sicher, dass es über header-container liegt */
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.925); /* Schatten hinzufügen */
+} 
+.header-container {
+    background-color: #3C506E;
+}
+
+#white-text {
+    color: white;
+}
+#text {
+    color: #3C506E;
+}
+.custom-button {
+    background-color: #3C506E; /* Hintergrundfarbe des Buttons */
+    color: white; /* Textfarbe des Buttons */
+    border: none; /* Entfernt die Standard-Randstilierung des Buttons */
+    padding: 10px 20px; /* Innenabstand des Buttons */
+    border-radius: 5px; /* Runde Ecken für den Button */
+}
+
