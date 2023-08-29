@@ -41,10 +41,10 @@ const mapContainer = document.getElementById("map-container");
 
     document.addEventListener("setCenter", (coords) => {
       console.log(coords.detail.coords);
-      /* map.getView().setCenter(corwebMercatorCoords);
+      map.getView().setCenter(coords.detail.coords);
       const marker = new ol.Feature({
         geometry: new ol.geom.Point(
-          [webMercatorCoords]
+          [coords.detail.coords]
         ),
       });
       const vectorSource = new ol.source.Vector({
@@ -53,7 +53,7 @@ const mapContainer = document.getElementById("map-container");
       const markerLayer = new ol.layer.Vector({
         source: vectorSource,
       });
-      map.addLayer(markerLayer); */
+      map.addLayer(markerLayer);
     });
     
     

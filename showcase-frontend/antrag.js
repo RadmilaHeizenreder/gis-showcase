@@ -101,36 +101,16 @@ Formio.createForm(document.getElementById("formio"), {
           enteredValue.postcode,
           enteredValue.city
         );
+        const address = event.data.address1
+        console.log(address);
 
-        // Ich sendest die enteredAddress an die Nominatim-API und erhältst die Koordinaten zurück
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${event.data}&format=json`
-        );
-        const data = await response.json();
-        console.log(data);
-        const longitude = parseFloat(data[0].lon);
-        const latitude = parseFloat(data[0].lat);
-
-        // Umwandlung der Koordinaten in Web Mercator
-        const webMercatorCoords = ol.proj.fromLonLat([longitude, latitude]);
-        console.log(webMercatorCoords);
+        const longitude = parseFloat(address.lon);
+        const latitude = parseFloat(address.lat);
+        console.log(latitude, longitude);
+        const webMercatorCoords = [longitude, latitude]
         document.dispatchEvent(new CustomEvent('setCenter', { detail: { coords: webMercatorCoords } }))
-  
+        // hubraum, 21, Winterfeldtstraße, Schöneberg, Tempelhof-Schöneberg, Berlin, 10781, Deutschland
 
-        // Hier die Karte auf die neuen Koordinaten zentrieren und einen Marker hinzufügen
-        // map.getView().setCenter([longitude, latitude]);
-        // const marker = new ol.Feature({
-        //   geometry: new ol.geom.Point(
-        //     ol.proj.fromLonLat([longitude, latitude])
-        //   ),
-        // });
-        // const vectorSource = new ol.source.Vector({
-        //   features: [marker],
-        // });
-        // const markerLayer = new ol.layer.Vector({
-        //   source: vectorSource,
-        // });
-        // map.addLayer(markerLayer);
       }
     });
   })
