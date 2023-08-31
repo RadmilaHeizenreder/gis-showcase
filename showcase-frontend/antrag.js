@@ -79,7 +79,7 @@ Formio.createForm(document.getElementById("formio"), {
           "value": ""
         }
       ],
-      "content": "<h2>Map</h2>\n<div class=\"map\" id=\"map-container\" style=\"height: 300px;width: 800;border: 5px solid #000;font-family: Arial, Helvetica, sans-serif;\"></div>",
+      "content": "<h2>Map</h2>\n<div class=\"map\" id=\"map-container\" style=\"height: 500px;width: 750;border: 5px solid #000;font-family: Arial, Helvetica, sans-serif;\"></div>",
       "refreshOnChange": false,
       "key": "html",
       // "customConditional": "document.addEventListener('customEvent', () => {\n  console.log('Ich bin in html-component');\n  \n  \n});",
@@ -106,9 +106,9 @@ Formio.createForm(document.getElementById("formio"), {
 
         const longitude = parseFloat(address.lon);
         const latitude = parseFloat(address.lat);
-        console.log(latitude, longitude);
+        console.log(longitude, latitude);
         const webMercatorCoords = [longitude, latitude]
-        document.dispatchEvent(new CustomEvent('setCenter', { detail: { coords: webMercatorCoords } }))
+        document.dispatchEvent(new CustomEvent('setMyLocation', { detail: { coords: webMercatorCoords } }))
         // hubraum, 21, Winterfeldtstraße, Schöneberg, Tempelhof-Schöneberg, Berlin, 10781, Deutschland
 
       }

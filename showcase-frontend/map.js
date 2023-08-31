@@ -1,6 +1,6 @@
-const mapContainer = document.getElementById("map-container");
+document.addEventListener("customEvent", () => {
+  const mapContainer = document.getElementById("map-container");
   if (mapContainer) {
-    console.log("ich bin in mapContainer");
     const map = new ol.Map({
       target: "map-container",
       view: new ol.View({
@@ -9,14 +9,14 @@ const mapContainer = document.getElementById("map-container");
       }),
     });
 
-    /* =========== Basemap Layers ============== */
+    /* =========== Basic Layer ============== */
     const osmStandard = new ol.layer.Tile({
       source: new ol.source.OSM(),
       visible: true,
       title: "OSM",
     });
 
-    /* =========== Basemap Layers ============== */
+    /* =========== Vector Layer School ============== */
     const vectorSchool = new ol.layer.Vector({
       source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
@@ -39,26 +39,41 @@ const mapContainer = document.getElementById("map-container");
 
     map.addLayer(layerGroup);
 
-    document.addEventListener("setCenter", (coords) => {
+    document.addEventListener("setMyLocation", (coords) => {
+      ol.proj.useGeographic();
       console.log(coords.detail.coords);
-      map.getView().setCenter(coords.detail.coords);
-      const marker = new ol.Feature({
-        geometry: new ol.geom.Point(
-          [coords.detail.coords]
-        ),
+
+      const myLocation = new ol.Feature({
+        geometry: new ol.geom.Point(coords.detail.coords),
       });
-      const vectorSource = new ol.source.Vector({
-        features: [marker],
+      // console.log(myLocation);
+      myLocation.setStyle(
+        new ol.style.Style({
+          image: new ol.style.Circle({
+            radius: 7,
+            fill: new ol.style.Fill({
+              color: "red",
+            }),
+            
+          }),
+          /* image: new ol.style.Icon({
+            color: "#BADA55",
+            crossOrigin: "anonymous",
+            src: "data/geolocation.svg",
+            scale: 0.05
+          }), */
+        })
+      );
+      const myLocationVectorLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [myLocation],
+        }),
+        visible: true,
       });
-      const markerLayer = new ol.layer.Vector({
-        source: vectorSource,
-      });
-      map.addLayer(markerLayer);
+      map.addLayer(myLocationVectorLayer);
     });
-    
-    
-    
   }
-/* document.addEventListener("customEvent", () => {
-  
-}); */
+});
+
+// hubraum, 21, Winterfeldtstraße, Schöneberg, Tempelhof-Schöneberg, Berlin, 10781, Deutschland
+// 64, Mühlhäuser Straße, Mauritz-Ost, Münster-Ost, Münster, Nordrhein-Westfalen, 48155, Deutschland
