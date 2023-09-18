@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     container_name: postgres-gis
-    image: postgres:15.4-alpine
+    image: postgis/postgis:15-3.4-alpine
     restart: always
     environment:
       - POSTGRES_USER=${TYPEORM_USERNAME}
