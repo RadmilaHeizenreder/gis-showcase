@@ -1,6 +1,10 @@
+let infoContainer = document.querySelector("#info-container");
+let antragContainer = document.querySelector("#antrag-container");
+let address = "";
+
 function toogleContainers() {
-  document.getElementById("info-container").style.display = "none";
-  document.getElementById("antrag-container").style.display = "block";
+  infoContainer.style.display = "none";
+  antragContainer.style.display = "block";
   var event = new Event("customEvent");
   document.dispatchEvent(event);
 }
@@ -8,84 +12,135 @@ function toogleContainers() {
 Formio.createForm(document.getElementById("formio"), {
   components: [
     {
-      "label": "Address",
-      "tableView": false,
-      "provider": "nominatim",
-      "key": "address1",
-      "type": "address",
-      "providerOptions": {
-        "params": {
-          "autocompleteOptions": {}
-        }
+      label: "Anrede",
+      widget: "choicesjs",
+      tooltip: "Bitte geben Sie Anrede des Kindes an.",
+      tableView: true,
+      data: {
+        values: [
+          {
+            label: "Frau",
+            value: "1",
+          },
+          {
+            label: "Herr",
+            value: "2",
+          },
+          {
+            label: "Divers",
+            value: "3",
+          },
+          {
+            label: "Keine Angaben",
+            value: "999",
+          },
+        ],
       },
-      "input": true,
-      "components": [
-        {
-          "label": "Address 1",
-          "tableView": false,
-          "key": "address1",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        },
-        {
-          "label": "Address 2",
-          "tableView": false,
-          "key": "address2",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        },
-        {
-          "label": "City",
-          "tableView": false,
-          "key": "city",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        },
-        {
-          "label": "State",
-          "tableView": false,
-          "key": "state",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        },
-        {
-          "label": "Country",
-          "tableView": false,
-          "key": "country",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        },
-        {
-          "label": "Zip Code",
-          "tableView": false,
-          "key": "zip",
-          "type": "textfield",
-          "input": true,
-          "customConditional": "show = _.get(instance, 'parent.manualMode', false);"
-        }
-      ]
+      validate: {
+        required: true,
+      },
+      key: "Anrede",
+      type: "select",
+      applyMaskOn: "change",
+      input: true,
     },
     {
-      "label": "HTML",
-      "tag": "div",
-      "attrs": [
+      label: "Address",
+      tableView: false,
+      provider: "nominatim",
+      key: "address1",
+      type: "address",
+      providerOptions: {
+        params: {
+          autocompleteOptions: {},
+        },
+      },
+      validate: {
+        required: true,
+      },
+      input: true,
+      components: [
         {
-          "attr": "",
-          "value": ""
-        }
+          label: "Address 1",
+          tableView: false,
+          key: "address1",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
+        {
+          label: "Address 2",
+          tableView: false,
+          key: "address2",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
+        {
+          label: "City",
+          tableView: false,
+          key: "city",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
+        {
+          label: "State",
+          tableView: false,
+          key: "state",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
+        {
+          label: "Country",
+          tableView: false,
+          key: "country",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
+        {
+          label: "Zip Code",
+          tableView: false,
+          key: "zip",
+          type: "textfield",
+          input: true,
+          customConditional:
+            "show = _.get(instance, 'parent.manualMode', false);",
+        },
       ],
-      "content": "<h2>Map</h2>\n<div class=\"map\" id=\"map-container\" style=\"height: 500px;width: 750;border: 5px solid #000;font-family: Arial, Helvetica, sans-serif;\"></div>",
-      "refreshOnChange": false,
-      "key": "html",
+    },
+    {
+      label: "HTML",
+      tag: "div",
+      attrs: [
+        {
+          attr: "",
+          value: "",
+        },
+      ],
+      content:
+        '<h2>Map</h2>\n<div class="map" id="map-container" style="height: 500px;width: 750;border: 5px solid #000;font-family: Arial, Helvetica, sans-serif;"></div>',
+      refreshOnChange: false,
+      key: "html",
       // "customConditional": "document.addEventListener('customEvent', () => {\n  console.log('Ich bin in html-component');\n  \n  \n});",
-      "type": "htmlelement",
-      "input": false,
-      "tableView": false
+      type: "htmlelement",
+      input: false,
+      tableView: false,
+    },
+    {
+      type: "button",
+      label: "Submit",
+      key: "submit",
+      disableOnInvalid: true,
+      input: true,
+      tableView: false,
     },
   ],
 })
@@ -99,19 +154,60 @@ Formio.createForm(document.getElementById("formio"), {
           enteredValue.road,
           enteredValue.house_number + ",",
           enteredValue.postcode,
-          enteredValue.city
+          enteredValue.town
         );
-        const address = event.data.address1
+        address = event.data.address1;
         console.log(address);
+        console.log("Adress ... -", address.address);
 
         const longitude = parseFloat(address.lon);
         const latitude = parseFloat(address.lat);
-        console.log(longitude, latitude);
-        const webMercatorCoords = [longitude, latitude]
-        document.dispatchEvent(new CustomEvent('setMyLocation', { detail: { coords: webMercatorCoords } }))
-        // hubraum, 21, Winterfeldtstraße, Schöneberg, Tempelhof-Schöneberg, Berlin, 10781, Deutschland
-
+        // console.log(longitude, latitude);
+        const webMercatorCoords = [longitude, latitude];
+        document.dispatchEvent(
+          new CustomEvent("setMyLocation", {
+            detail: { coords: webMercatorCoords },
+          })
+        );
       }
+    });
+    form.on("submit", (subm) => {
+      if (subm) {
+        console.log('Submission', subm);
+        
+        const selectedValue = subm.data.Anrede;
+        console.log('selectedValue', selectedValue);
+
+        const selectedLabel = subm.metadata.selectData.Anrede.label
+        console.log('selectedLabel', selectedLabel);
+
+        const street = subm.data.address1.address.road ? subm.data.address1.address.road : ''
+        const house_number = subm.data.address1.address.house_number ? subm.data.address1.address.house_number : ''
+        const postcode = subm.data.address1.address.postcode ? subm.data.address1.address.postcode : ''
+        const city = subm.data.address1.address.city ? subm.data.address1.address.city : subm.data.address1.address.town
+        address = street + ' ' + house_number + ', ' + postcode + ' ' + city
+        console.log('submit address', address);
+
+        alert("Das Formular wurde erfolgreich eingereicht");
+        infoContainer.style.display = "block";
+        antragContainer.style.display = "none";
+
+
+        // const component = form.components.find((comp) => comp.key === "Anrede");
+        // console.log('component', component);
+        // if(component) {
+        //   console.log(component.data);
+        // }
+        
+      }
+
+      /*       if (component) {
+        
+
+        if (selectedLabel) {
+          console.log("Ausgewähltes Label:", selectedLabel.label);
+        }
+      } */
     });
   })
   .catch((err) => {

@@ -4,7 +4,7 @@
   "description": "GIS-Integration ins FMS formio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -c-1"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
     "bootstrap": "^5.3.1",
     "ol": "^7.5.1",
     "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
