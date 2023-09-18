@@ -6,5 +6,8 @@ export class Submission {
   id: number;
 
   @Column()
+  Anrede: string;
+
+  @Column()
   Adresse: string;
 }

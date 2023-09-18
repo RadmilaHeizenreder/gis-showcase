@@ -1,8 +1,7 @@
-import { IsString } from 'class-validator';
-import { Point } from 'src/model/geometry';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateSchoolsDto {
-  @IsString()
+  /*  @IsString()
   Schulform: string;
 
   @IsString()
@@ -27,8 +26,11 @@ export class CreateSchoolsDto {
   Rufnummer: string;
 
   @IsString()
-  Email: string;
+  Email: string; */
 
-  @IsString() // Geometry-Spalte für Koordinaten
-  coordinates: Point;
+  @IsString()
+  name: string;
+
+  @IsNotEmpty()
+  coordinates: object;
 }

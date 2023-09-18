@@ -1,4 +1,26 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { SchoolAddressService } from './school-address.service';
+import { CreateSchoolsDto } from './dto/school.dto';
+import { SchoolAddressEntity } from './entities/school.entity';
 
-@Controller('school-address')
-export class SchoolAddressController {}
+@Controller('school')
+export class SchoolAddressController {
+  constructor(private readonly schoolAddressService: SchoolAddressService) {}
+
+  @Get()
+  findAll() {
+    return this.schoolAddressService.findAll();
+  }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.schoolAddressService.findOne(+id);
+  }
+  @Post()
+  async createAddress(
+    @Body() createSchoolsDto: CreateSchoolsDto,
+  ): Promise<SchoolAddressEntity> {
+    return await this.schoolAddressService.createSchoolAddress(
+      createSchoolsDto,
+    );
+  }
+}

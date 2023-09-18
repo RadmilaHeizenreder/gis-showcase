@@ -1,11 +1,11 @@
-import { Column, Entity, Point, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('school')
 export class SchoolAddressEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  /* @Column()
   Schulnummer: string;
 
   @Column()
@@ -33,10 +33,10 @@ export class SchoolAddressEntity {
   Rufnummer: string;
 
   @Column()
-  Email: string;
+  Email: string; */
+  @Column()
+  name: string;
 
-  @Column({ type: 'point' }) // Geometry-Spalte für Koordinaten
-  coordinates: Point;
-  /*   @Column({ spatialFeatureType: 'Point', srid: 4326 })
-  coordinates: Point; */
+  @Column('geography', { spatialFeatureType: 'Point' }) // Geometry-Spalte für Koordinaten
+  coordinates: object;
 }
