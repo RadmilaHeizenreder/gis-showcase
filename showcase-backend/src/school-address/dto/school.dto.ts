@@ -1,36 +1,33 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateSchoolsDto {
-  /*  @IsString()
-  Schulform: string;
+  @IsString()
+  schulnummer: string;
 
   @IsString()
-  Name: string;
-
-  @IsString()
-  Kurzname: string;
-
-  @IsString()
-  Adresse: string;
-
-  @IsString()
-  Postleitzahl: string;
-
-  @IsString()
-  Ort: string;
-
-  @IsString()
-  Schueler: string;
-
-  @IsString()
-  Rufnummer: string;
-
-  @IsString()
-  Email: string; */
+  schulform: string;
 
   @IsString()
   name: string;
 
+  @IsString()
+  adresse: string;
+
+  @IsString()
+  plz: string;
+
+  @IsString()
+  ort: string;
+
+  @IsNumber()
+  schueler: number;
+
+  @IsString()
+  rufnummer: string;
+
+  @IsString()
+  email: string;
+
   @IsNotEmpty()
-  coordinates: object;
+  geometry: object;
 }

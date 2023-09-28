@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { SchoolAddressService } from './school-address.service';
 import { CreateSchoolsDto } from './dto/school.dto';
 import { SchoolAddressEntity } from './entities/school.entity';
@@ -22,5 +22,9 @@ export class SchoolAddressController {
     return await this.schoolAddressService.createSchoolAddress(
       createSchoolsDto,
     );
+  }
+  @Post('import')
+  async createAddresses(@Query('url') filePath: string): Promise<void> {
+    await this.schoolAddressService.import(filePath);
   }
 }

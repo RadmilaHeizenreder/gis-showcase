@@ -5,38 +5,33 @@ export class SchoolAddressEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  /* @Column()
-  Schulnummer: string;
+  @Column()
+  schulnummer: string;
 
   @Column()
-  Schulform: string;
+  schulform: string;
 
-  @Column()
-  Name: string;
-
-  @Column()
-  Kurzname: string;
-
-  @Column()
-  Adresse: string;
-
-  @Column()
-  Postleitzahl: string;
-
-  @Column()
-  Ort: string;
-
-  @Column()
-  Schueler: string;
-
-  @Column()
-  Rufnummer: string;
-
-  @Column()
-  Email: string; */
   @Column()
   name: string;
 
+  @Column()
+  adresse: string;
+
+  @Column()
+  plz: string;
+
+  @Column()
+  ort: string;
+
+  @Column()
+  schueler: number;
+
+  @Column()
+  rufnummer: string;
+
+  @Column()
+  email: string;
+
   @Column('geography', { spatialFeatureType: 'Point' }) // Geometry-Spalte für Koordinaten
-  coordinates: object;
+  geometry: object;
 }
