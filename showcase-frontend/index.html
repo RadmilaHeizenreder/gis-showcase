@@ -8,7 +8,7 @@
     <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
     <!-- <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="./libs/v7.3.0-package/dist/ol.js.map"> -->
-    <link href="styles.css" rel="stylesheet">
+    <link href="src/styles/styles.css" rel="stylesheet">
     <title>Start</title>
 </head>
 
@@ -34,73 +34,8 @@
     </nav>
 
     <!-- Content -->
-    <div id="info-container">
-        <div class="container-fluid pb-3 flex-grow-1 d-flex flex-column flex-sm-row overflow-auto">
-            <div class="row flex-grow-sm-1 flex-grow-0">
-                <aside class="col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3">
-                    <div class="bg-light border p-1 h-100 sticky-top">
-                        <ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link px-2 text-truncate">
-                                    <span class="d-none d-sm-inline" id="text">Leistungsbezeichnung</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-2 text-truncate">
-                                    <span class="d-none d-sm-inline" id="text">Kurztext</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-2 text-truncate">
-                                    <span class="d-none d-sm-inline" id="text">Voraussetzung</span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-2 text-truncate">
-                                    <span class="d-none d-sm-inline" id="text">Antrag stellen</span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-2 text-truncate">
-                                    <span class="d-none d-sm-inline" id="text">Customers</span> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-                <main class="col overflow-auto h-100">
-                    <div class="bg-light border p-3" id="text">
-                        <h2>Leistungsbezeichnung</h2>
-                        <p>Schülerinnen und Schüler für die Aufnahme an einer Schule anmelden.</p>
-                        <hr />
-                        <h2>Kurztext</h2>
-                        <ul>
-                            <li>Umfasst Grund-, Real-, Gesamtschulen, Gymnasien und vermittelt grundlegende Lerninhalte.
-                            </li>
-                            <li>Kinder mit und ohne Behinderung bzw. Bedarf an sonderpädagogischer Unterstützung werden
-                                in der Regel gemeinsam unterrichtet underzogen (inkl. Bildung)</li>
-                            <li>Kinder, die bis zum 30. September 6 Jahre alt werden, werden zum 1. August des gleichen
-                            </li>
-                            <li>Jahres schulpflichtig und müssen eingeschult werden.</li>
-                        </ul>
-                        <hr />
-                        <h2>Voraussetzung</h2>
-                        <p>Ihr Kind hat bis 30. September das sechste Lebensjahr vollendet und ist somit schulpflichtig.
-                            Alle Kinder, die am 1. Oktober oder später sechs Jahre alt werden, sind erst im folgenden
-                            Kalenderjahr schulpflichtig.</p>
-                        <hr />
-                        <h2>Antrag stellen</h2>
-                        <p>Mit dem untenstehenden Button gelangen Sie direkt in die Antragsbearbeitung. Alle weiteren
-                            Schritte werden Ihnen dort erläutert.</p>
-                        <div class="text-center">
-                            <a href="#" class="custom-button btn-lg btn-block" onclick="toogleContainers()">ZUM
-                                ANTRAG</a>
-                            <!-- <button class="custom-button btn-lg btn-block">ZUM ANTRAG</button>  -->
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
-
-    <div id="antrag-container" style="display: none; ">
+ 
+    <div id="antrag-container" >
         <h1 id="text">Antrag</h1>
         <div class="container-fluid pb-3 d-flex flex-column flex-sm-row overflow-auto">
             <div class="row flex-grow-sm-1 flex-grow-0">
@@ -139,11 +74,8 @@
     </div>
 
     <script src='https://cdn.form.io/js/formio.full.min.js'></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <script src="./node_modules/popper.js/dist/umd/popper.min.js"></script> -->
-    <script src="./libs/v7.3.0-package/dist/ol.js"></script>
-    <script src="antrag.js"></script>
-    <script src="map.js"></script>
+    <script type="module" src="main.js"></script>
+
 </body>
 
 </html>
