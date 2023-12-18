@@ -5,7 +5,7 @@ export class MyForm {
   constructor(formJson, target) {
     this.form = this.initForm(formJson);
     this.map = new MapContainer(target);
-  }
+      }
 
   async initForm(formJson) {
     try {
@@ -57,4 +57,5 @@ export class MyForm {
       }
     })
   }
+  
 }

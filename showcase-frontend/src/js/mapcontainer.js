@@ -4,7 +4,7 @@ import Feature from "ol/Feature";
 import { Point } from "ol/geom";
 import { Circle, Fill, Style } from "ol/style";
 import { MyStyle } from "../styles/mystyle";
- 
+
 export class MapContainer extends BaseMap{
   constructor(target) {
     super(target)

@@ -6,6 +6,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { useGeographic } from "ol/proj";
 
+
 export class BaseMap {
   constructor(target) {
     this.map = new Map({
@@ -79,7 +80,7 @@ export class BaseMap {
     this.map.removeOverlay(overlay);
   }
   
-  addBtn(btn) {
-    this.map.addControl(btn);
+  addControlBtn(button) {
+    this.map.addControl(button);
   }
 }
