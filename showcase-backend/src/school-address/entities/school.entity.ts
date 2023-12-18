@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Geometry } from 'src/model';
+import { SchoolRouteEntity } from 'src/school-routes/entities/school-route.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('school')
 export class SchoolAddressEntity {
@@ -6,32 +8,35 @@ export class SchoolAddressEntity {
   id: number;
 
   @Column()
-  schulnummer: string;
+  schoolId: string;
 
   @Column()
-  schulform: string;
+  schoolform: string;
 
   @Column()
   name: string;
 
   @Column()
-  adresse: string;
+  address: string;
 
   @Column()
-  plz: string;
+  zipCode: string;
 
   @Column()
-  ort: string;
+  city: string;
 
   @Column()
-  schueler: number;
+  numberOfStudents: number;
 
   @Column()
-  rufnummer: string;
+  phoneNumber: string;
 
   @Column()
   email: string;
 
   @Column('geography', { spatialFeatureType: 'Point' }) // Geometry-Spalte für Koordinaten
-  geometry: object;
+  geometry: Geometry.Point;
+
+  @OneToMany(() => SchoolRouteEntity, (route) => route.schoolId)
+  routes: SchoolRouteEntity[];
 }

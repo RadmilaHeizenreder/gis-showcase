@@ -1,167 +1,60 @@
-import { Formio } from '@formio/js';
-import {MapContainer} from "./mapcontainer";
+import { Formio } from "@formio/js";
+import { MapContainer } from "./mapcontainer";
 
 export class MyForm {
-  
-  constructor() {
-    this.initForm();
-    this.map = new MapContainer()
+  constructor(formJson, target) {
+    this.form = this.initForm(formJson);
+    this.map = new MapContainer(target);
   }
 
-  async initForm() {
+  async initForm(formJson) {
     try {
-      const form = await Formio.createForm(document.getElementById("formio"), {
-        components: [
-          {
-            label: "Anrede",
-            widget: "choicesjs",
-            tooltip: "Bitte geben Sie Anrede des Kindes an.",
-            tableView: true,
-            data: {
-              values: [
-                {
-                  label: "Frau",
-                  value: "1",
-                },
-                {
-                  label: "Herr",
-                  value: "2",
-                },
-                {
-                  label: "Divers",
-                  value: "3",
-                },
-                {
-                  label: "Keine Angaben",
-                  value: "999",
-                },
-              ],
-            },
-            validate: {
-              required: true,
-            },
-            key: "Anrede",
-            type: "select",
-            applyMaskOn: "change",
-            input: true,
-          },
-          {
-            label: "Address",
-            tableView: false,
-            provider: "nominatim",
-            key: "address1",
-            type: "address",
-            providerOptions: {
-              params: {
-                autocompleteOptions: {},
-              },
-            },
-            validate: {
-              required: true,
-            },
-            input: true,
-            components: [
-              {
-                label: "Address 1",
-                tableView: false,
-                key: "address1",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-              {
-                label: "Address 2",
-                tableView: false,
-                key: "address2",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-              {
-                label: "City",
-                tableView: false,
-                key: "city",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-              {
-                label: "State",
-                tableView: false,
-                key: "state",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-              {
-                label: "Country",
-                tableView: false,
-                key: "country",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-              {
-                label: "Zip Code",
-                tableView: false,
-                key: "zip",
-                type: "textfield",
-                input: true,
-                customConditional:
-                  "show = _.get(instance, 'parent.manualMode', false);",
-              },
-            ],
-          },
-          {
-            label: "HTML",
-            tag: "div",
-            attrs: [
-              {
-                attr: "",
-                value: "",
-              },
-            ],
-            content: '<h2>Map</h2>\n<div class="map" id="map-container"></div>',
-            refreshOnChange: false,
-            key: "html",
-            // "customConditional": "document.addEventListener('customEvent', () => {\n  console.log('Ich bin in html-component');\n  \n  \n});",
-            type: "htmlelement",
-            input: false,
-            tableView: false,
-          },
-        ],
-      })
-        // .then((form) => { // weil oben await ist schon da
-          // Event-Listener für Formulardatenänderungen
-          form.on("change", async (event) => {
-            if (event.changed && event.changed.component.key === "address1") {
-              const enteredValue = event.data.address1.address; // Hier den eingegebenen Wert erhalten
-              console.log(
-                "Eingegebene Adresse:",
-                enteredValue.road,
-                enteredValue.house_number + ",",
-                enteredValue.postcode,
-                enteredValue.town
-              );
-              address = event.data.address1;
-              console.log(address);
-              console.log("Adress ... -", address.address);
+      this.form = await Formio.createForm(
+        document.getElementById("formio"),
+        formJson
+      );
+      const htmlComponent = this.form.components.find((component) => {
+        return component.type === "htmlelement";
+      });
 
-              const longitude = parseFloat(address.lon);
-              const latitude = parseFloat(address.lat);
-              // console.log(longitude, latitude);
-              const webMercatorCoords = [longitude, latitude];
-              this.map.showPoint(webMercatorCoords);
-            }
-          });
-        // })
+      if(htmlComponent && htmlComponent.component.content.includes('div class="map"')){
+        this.getAddressInput()
+      }
+
+      //submit()
     } catch (e) {
-      console.log("formular errro", e);
+      console.log("formular error", e);
     }
+  }
+
+  getAddressInput() {
+    this.form.on("change", async (event) => {
+      if (event.changed && event.changed.component.key === "address1") {
+        // Entferne zuerst den aktuellen Punkt von der Karte, falls vorhanden
+        this.map.removeLocationFeature();
+        if (
+          event.data.address1 &&
+          event.data.address1.lon &&
+          event.data.address1.lat
+        ) {
+          // Setze einen Punkt auf der Karte, wenn address1 gefüllt ist
+          const webMercatorCoords = [
+            parseFloat(event.data.address1.lon),
+            parseFloat(event.data.address1.lat),
+          ];
+          this.map.setLocation(webMercatorCoords);
+        } else {
+          // Entferne den Punkt von der Karte, wenn address1 leer ist
+          this.map.removeLocationFeature();
+        }
+      }
+    });
+  }
+  updateAddressInput() {
+    this.form.on('change', async event => {
+      if(event.changed && event.changed.component.key === 'address1'){
+        this.map.setLocation(addressCoords)
+      }
+    })
   }
 }

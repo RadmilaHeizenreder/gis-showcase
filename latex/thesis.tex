@@ -1,0 +1,51 @@
+% Created by Christoph Jansen
+% License: CC BY 4.0 http://creativecommons.org/licenses/by/4.0/
+% Source: https://github.com/Gnork/htw-latex-template
+% THIS TEMPLATE IS NOT OFFICIAL
+% Offical .doc template: http://www.htw-berlin.de/hochschulstruktur/zentrale-referate/presse-und-oeffentlichkeitsarbeit/abschlussarbeiten-vorlagen/
+
+\documentclass[a4paper]{book}
+\usepackage[twoside=false,margin=2.5cm,bindingoffset=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+%\usepackage{bibgerm}
+\usepackage{natbib}
+\usepackage{ngerman}
+\usepackage{graphicx}
+\usepackage{wallpaper}
+\usepackage{textpos}
+
+%============zitieren \citep{Bleek.2005} ==> (Bleek 2005)==================
+%============zitieren \citet{Bleek.2005} ==> Bleek (2005)==================
+%============zitieren \citep[S.~373]{Bleek.2005} ==> (Bleek 2005, S. 373)==================
+
+% set wallpaper position for title page
+\addtolength{\wpXoffset}{0.0cm}
+\addtolength{\wpYoffset}{7.0cm}
+
+% define htw color for title page
+\definecolor{htwgreen}{RGB}{118,185,0}
+
+\begin{document}
+\input{text/titel}
+\frontmatter
+\input{text/erkl}
+\input{text/kurzfassung}
+\tableofcontents
+\listoffigures
+\mainmatter
+\input{text/einleitung}
+\input{text/grundlagen}
+\input{text/anforderungen}
+\input{text/konzept}
+\input{text/implementierung}
+\input{text/test}
+\input{text/evaluation}
+\input{text/fazit}
+\appendix
+\input{appendix/apA} % Appendix A
+\backmatter
+\bibliographystyle{abbrvnat}
+\bibliography{gis-literatur}
+\end{document}

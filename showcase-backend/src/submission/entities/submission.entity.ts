@@ -1,13 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { SchoolRouteEntity } from 'src/school-routes/entities/school-route.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Submission {
+@Entity('submission')
+export class SubmissionEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  Anrede: string;
+  @Column({ type: 'jsonb' })
+  submission: any;
 
-  @Column()
-  Adresse: string;
+  @OneToMany(() => SchoolRouteEntity, (route) => route.submissionId)
+  routes: SchoolRouteEntity[];
 }
