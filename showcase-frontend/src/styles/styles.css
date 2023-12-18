@@ -17,20 +17,30 @@
 }
 .html-container{
     display: flex;
+    overflow: hidden;
+    justify-content: center;
+    height: 500px;
 }
 .map {
     flex: 20;
     padding-right: 10px;
-    height: 600px;
 }
 .tools-container{
     flex: 1;
     border-radius: 5px;
-    padding-left: 10px;
-    cursor: pointer;
-    height: 600px;
+    padding: 10px;
+    color: #3C506E;
+    /* cursor: pointer; */
     background: #d4e3fa;
-    
+    position: relative;
+    display: block;
+}
+.tools-container h5{
+    margin: 5;
+}
+.tools-container input {
+    /* left: 10px; */
+    margin: 5;
 }
 .ol-control.filter {
     position: static;

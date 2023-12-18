@@ -1,7 +1,7 @@
 export class BaseButton {
-  constructor(className, innerHtml) {
+  constructor(className, textContent) {
     this.button = document.createElement("button");
     this.button.className = "ol-control "+className;
-    this.button.innerHTML = innerHtml;
+    this.button.textContent = textContent;
   }
 }

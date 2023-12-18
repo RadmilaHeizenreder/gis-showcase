@@ -109,7 +109,7 @@
           "value": ""
         }
       ],
-      "content": "<h2>Map</h2>\n<div class=\"html-container\"><div class=\"map\" id=\"map-container\"></div><div class=\"tools-container\"></div></div>",
+      "content": "<h2>Map</h2>\n<div class=\"html-container\"><div class=\"map\" id=\"map-container\"></div><div class=\"tools-container\" id=\"tools-container\"></div></div>",
       "refreshOnChange": false,
       "key": "html",
       "type": "htmlelement",
