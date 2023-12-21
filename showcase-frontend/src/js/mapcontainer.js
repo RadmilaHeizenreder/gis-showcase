@@ -27,7 +27,7 @@ export class MapContainer extends BaseMap {
     this.locationLayer = this.addDataToMap([feature], MyStyle.setLocationStyle);
     this.locationCoords = coords;
 
-    const view = this.getView();
+    const view = this.map.getView()
     view.animate({ center: this.locationCoords, duration: 500 });
   }
   removeLocationFeature() {

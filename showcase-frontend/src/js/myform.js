@@ -25,7 +25,7 @@ export class MyForm {
       ) {
         this.getAddressInput();
       }
-      this.submitEvent()
+      this.submitEvent();
     } catch (e) {
       console.log("formular error", e);
     }
@@ -34,27 +34,20 @@ export class MyForm {
   getAddressInput() {
     try {
       this.form.on("change", async (event) => {
-        if (event.changed && event.changed.component.key === "address1") {
+        const { changed, data } = event;
+        if (changed?.component.key === "address1") {
           // Entferne zuerst den aktuellen Punkt von der Karte, falls vorhanden
           this.map.removeLocationFeature();
           // this.gisTools.gisContainer.style.display = "none";
-          if (
-            event.data.address1 &&
-            event.data.address1.lon &&
-            event.data.address1.lat
-          ) {
-            const enteredValue = event.data.address1.address; // Hier den eingegebenen Wert erhalten
-            console.log(enteredValue);
-            const address =
-              enteredValue.road +
-              ", " +
-              enteredValue.house_number +
-              ", " +
-              enteredValue.postcode + enteredValue.city;
+          const { address1 } = data;
+          if (address1?.lon && address1?.lat) {
+            const { road, house_number, postcode, city } = address1.address;
+            const address = `${road} ${house_number}, ${postcode} ${city}`;
+            console.log(address1);
             // Setze einen Punkt auf der Karte, wenn address1 gefüllt ist
             const webMercatorCoords = [
-              parseFloat(event.data.address1.lon),
-              parseFloat(event.data.address1.lat),
+              parseFloat(address1.lon),
+              parseFloat(address1.lat),
             ];
             this.map.setLocationFeature(webMercatorCoords);
             // this.gisTools.gisContainer.style.display = "block";
@@ -67,9 +60,8 @@ export class MyForm {
         }
       });
     } catch (error) {
-      console.error("Fehler: ", error)
+      console.error("Fehler: ", error);
     }
-    
   }
   updateAddressInput() {
     this.form.on("change", async (event) => {

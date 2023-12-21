@@ -58,11 +58,6 @@ export class BaseMap {
     this.map.removeLayer(layer);
   }
 
-  /** view */
-  getView() {
-    this.map.getView();
-  }
-
   /** drawing */
   addInteractionDraw(draw) {
     this.map.addInteraction(draw);
