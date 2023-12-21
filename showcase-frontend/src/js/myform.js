@@ -25,55 +25,88 @@ export class MyForm {
       ) {
         this.getAddressInput();
       }
-
-      //submit()
+      this.submitEvent()
     } catch (e) {
       console.log("formular error", e);
     }
   }
 
   getAddressInput() {
-    this.form.on("change", async (event) => {
-      if (event.changed && event.changed.component.key === "address1") {
-        // Entferne zuerst den aktuellen Punkt von der Karte, falls vorhanden
-        this.map.removeLocationFeature();
-        // this.gisTools.gisContainer.style.display = "none";
-        if (
-          event.data.address1 &&
-          event.data.address1.lon &&
-          event.data.address1.lat
-        ) {
-          const enteredValue = event.data.address1.address; // Hier den eingegebenen Wert erhalten
-          const address =
-            enteredValue.road +
-            ", " +
-            enteredValue.house_number +
-            ", " +
-            enteredValue.postcode +
-            ", " +
-            enteredValue.town;
-          // Setze einen Punkt auf der Karte, wenn address1 gefüllt ist
-          const webMercatorCoords = [
-            parseFloat(event.data.address1.lon),
-            parseFloat(event.data.address1.lat),
-          ];
-          this.map.setLocation(webMercatorCoords);
-          // this.gisTools.gisContainer.style.display = "block";
-          this.gisTools.addInputFieldValue(address)
-        } else {
-          // Entferne den Punkt von der Karte, wenn address1 leer ist
+    try {
+      this.form.on("change", async (event) => {
+        if (event.changed && event.changed.component.key === "address1") {
+          // Entferne zuerst den aktuellen Punkt von der Karte, falls vorhanden
           this.map.removeLocationFeature();
           // this.gisTools.gisContainer.style.display = "none";
+          if (
+            event.data.address1 &&
+            event.data.address1.lon &&
+            event.data.address1.lat
+          ) {
+            const enteredValue = event.data.address1.address; // Hier den eingegebenen Wert erhalten
+            console.log(enteredValue);
+            const address =
+              enteredValue.road +
+              ", " +
+              enteredValue.house_number +
+              ", " +
+              enteredValue.postcode + enteredValue.city;
+            // Setze einen Punkt auf der Karte, wenn address1 gefüllt ist
+            const webMercatorCoords = [
+              parseFloat(event.data.address1.lon),
+              parseFloat(event.data.address1.lat),
+            ];
+            this.map.setLocationFeature(webMercatorCoords);
+            // this.gisTools.gisContainer.style.display = "block";
+            this.gisTools.addInputFieldValue(address);
+          } else {
+            this.map.removeLocationFeature();
+            // this.gisTools.gisContainer.style.display = "none";
+            // alle erstellten routen müssen entfernt werden
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.error("Fehler: ", error)
+    }
+    
   }
   updateAddressInput() {
     this.form.on("change", async (event) => {
       if (event.changed && event.changed.component.key === "address1") {
-        this.map.setLocation(addressCoords);
+        this.map.setLocationFeature(addressCoords);
       }
     });
   }
-  addresse;
+  submitEvent() {
+    this.form.on("submit", async (submit) => {
+      const submitData = {
+        submission: {
+          anrede: submit.data.anrede,
+          addresse: submit.data.address1,
+        },
+        routes: [
+          {
+            schoolId: submit.data.schoolId1,
+            route: JSON.parse(submit.data.route1),
+            prio: submit.data.prio1,
+          },
+          {
+            schoolId: submit.data.schoolId2,
+            route: JSON.parse(submit.data.route2),
+            prio: submit.data.prio2,
+          },
+        ],
+      };
+      await fetch("http://localhost:3031/submission", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submitData),
+      })
+        .then((response) => {
+          return response;
+        })
+        .catch((err) => console.error("Fehler: ", err));
+    });
+  }
 }

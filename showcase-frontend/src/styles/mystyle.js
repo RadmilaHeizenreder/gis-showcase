@@ -48,11 +48,19 @@ export class MyStyle {
           })
         })
     }
+    // return new Style({
+    //   stroke: new Stroke({
+    //     color: color,
+    //     width: 4
+    //   })
+    // })
+  }
+  static setLocationStyle(){
     return new Style({
-      stroke: new Stroke({
-        color: color,
-        width: 4
-      })
-    })
+      image: new Circle({
+        radius: 7,
+        fill: new Fill({ color: "#f40418db" }),
+      }),
+    });
   }
 }

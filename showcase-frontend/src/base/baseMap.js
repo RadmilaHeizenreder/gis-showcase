@@ -25,9 +25,11 @@ export class BaseMap {
     useGeographic();
   }
 
-  /** add feautes to map
+  /** Adds features to the map.
+   * @param {Array<Feature>} features - The features to be added to the map.
+   * @param {Object} [styleOptions=null] - The style options for the features.
    * if one feature than addDataToMap([feature], style)
-   * return source
+   * @returns {Object} - An object containing the vector source.
    */
   addDataToMap(features, style = null) {
     const source = new VectorSource({

@@ -1,4 +1,5 @@
 import {BaseButton} from "./src/base/baseButton";
+import {PopUp} from "./src/base/basePopup";
 import { MyForm } from "./src/js/myform";
 import { Control } from "ol/control";
 
