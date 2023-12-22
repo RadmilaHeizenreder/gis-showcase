@@ -17,7 +17,11 @@ export class RouteService {
     this.orsDirection = new Openrouteservice.Directions({
       api_key: apiRouterKey,
     });
-    this.vectorSource = undefined;
+    this.vectorSource = new VectorSource();
+    this.routeLayer = this.map.addLayerToMap(
+      this.vectorSource,
+      MyStyle.setStyle
+    );
     this.selectedRoute = undefined;
     this.routeResponse = undefined;
     this.selectedFeautres = new Collection();
@@ -25,6 +29,14 @@ export class RouteService {
 
   async calculateRoute(startPoint, endPoint, profile, param) {
     try {
+      if (!startPoint) {
+        alert("Bitte geben Sie Ihre Wohnadresse ein!");
+        return;
+      }
+      if (this.searchRouteByParam(this.routeLayer, param)) {
+        console.log("Die Route existiert bereits");
+        return;
+      }
       const response = await this.orsDirection.calculate({
         coordinates: [startPoint, endPoint],
         profile: profile,
@@ -34,6 +46,7 @@ export class RouteService {
         language: "de",
       });
       this.routeResponse = this.createRouteFeature(response, param);
+      this.showRouteOnMap(this.routeResponse, param)
       return response;
     } catch (error) {
       console.log("formular error", error);
@@ -60,6 +73,11 @@ export class RouteService {
 
     const midCoords = [(firstLon + lastLon) / 2, (firstLat + lastLat) / 2];
     //createMeasureTooltip(mitdCoords, param)
-    this.vectorSource = this.map.addDataToMap(geodata, MyStyle.setStyle);
+    this.vectorSource.addFeatures(geodata);
+  }
+  /** search route on routeVector by parameter */
+  searchRouteByParam(route, param) {
+    const features = route.getSource().getFeatures();
+    return features.find((feature) => feature.get("param") === param);
   }
 }

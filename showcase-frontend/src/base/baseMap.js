@@ -35,6 +35,10 @@ export class BaseMap {
     const source = new VectorSource({
       features: features,
     });
+    this.addLayerToMap(source, style)
+    return { source };
+  }
+  addLayerToMap(source, style=null) {
     const layer = new VectorLayer({
       source: source,
       visible: true,
@@ -42,7 +46,7 @@ export class BaseMap {
       style: style,
     });
     this.addNewLayer(layer);
-    return { source };
+    return layer
   }
   removeFeautres(source) {
     if (source && source.source) {

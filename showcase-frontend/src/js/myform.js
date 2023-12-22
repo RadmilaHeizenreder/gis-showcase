@@ -43,7 +43,6 @@ export class MyForm {
           if (address1?.lon && address1?.lat) {
             const { road, house_number, postcode, city } = address1.address;
             const address = `${road} ${house_number}, ${postcode} ${city}`;
-            console.log(address1);
             // Setze einen Punkt auf der Karte, wenn address1 gefüllt ist
             const webMercatorCoords = [
               parseFloat(address1.lon),
