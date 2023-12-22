@@ -23,7 +23,7 @@ export class MyForm {
         htmlComponent &&
         htmlComponent.component.content.includes('div class="map"')
       ) {
-        this.getAddressInput();
+        this.showAddressInput();
       }
       this.submitEvent();
     } catch (e) {
@@ -31,7 +31,7 @@ export class MyForm {
     }
   }
 
-  getAddressInput() {
+  showAddressInput() {
     try {
       this.form.on("change", async (event) => {
         const { changed, data } = event;

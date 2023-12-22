@@ -3,7 +3,7 @@ import { BaseMap } from "../base/baseMap";
 import Feature from "ol/Feature";
 import { Point } from "ol/geom";
 import { MyStyle } from "../styles/mystyle";
-import { PopUp } from "../base/basePopup";
+import { PopUp } from "./popup.overlay";
 
 export class MapContainer extends BaseMap {
   constructor(target) {
@@ -65,6 +65,7 @@ export class MapContainer extends BaseMap {
         this.popupOverlay.showPopupOverlay(schoolFeature, event.coordinate);
         this.addOverlayToMap(this.popupOverlay.popupOverlay)
         this.popupData = schoolFeature.getProperties().school
+        // console.log(this.popupData);
       } else {
         this.popupOverlay.hidePopupOverlay();
       }

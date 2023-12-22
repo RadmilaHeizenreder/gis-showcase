@@ -21,7 +21,8 @@
   "dependencies": {
     "@formio/js": "^5.0.0-rc.27",
     "bootstrap": "^5.3.1",
-    "ol": "^8.1.0"
+    "ol": "^8.1.0",
+    "openrouteservice-js": "^0.3.2"
   },
   "devDependencies": {
     "vite": "^4.4.9"
