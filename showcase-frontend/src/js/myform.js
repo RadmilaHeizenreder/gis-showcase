@@ -1,6 +1,7 @@
 import { Formio } from "@formio/js";
 import { MapContainer } from "./mapcontainer";
 import { GisTools } from "./gis-tools";
+import { Utils } from "@formio/js";
 
 export class MyForm {
   constructor(formJson, targetMap, targetGis) {
@@ -18,6 +19,11 @@ export class MyForm {
       const htmlComponent = this.form.components.find((component) => {
         return component.type === "htmlelement";
       });
+      await Utils.eachComponent(this.form.components, component => {
+        console.log(component);
+      })
+      const component = await Utils.getComponent(this.form.components, 'address1')
+      console.log(component);
 
       if (
         htmlComponent &&
