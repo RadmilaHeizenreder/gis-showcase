@@ -22,8 +22,8 @@ export class MyForm {
       await Utils.eachComponent(this.form.components, component => {
         console.log(component);
       })
-      const component = await Utils.getComponent(this.form.components, 'address1')
-      console.log(component);
+      const component = await Utils.getComponent(this.form.components, 'html')
+      console.log("htmlelement", component);
 
       if (
         htmlComponent &&

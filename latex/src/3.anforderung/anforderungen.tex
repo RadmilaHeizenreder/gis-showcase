@@ -1,0 +1,46 @@
+\chapter{Anforderungen}
+\label{cha:anforderungen}
+
+Use Case
+Die Anmeldung von Kindern an einer Schule erfolgt in Deutschland durch seine Eltern oder andere Erziehungsberechtigte. Dabei gelten bezüglich der Möglichkeiten zur Schulwahl je nach Bundesland Einschränkungen. Insbesondere in Hamburg und NRW gibt es aber eine Möglichkeit zur weitgehend freien Schulwahl: Eltern können sich frei zwischen allen Schulen im Stadt- bzw. Einzugsgebiet entscheiden \citep{schulwahl_nrw}. Ein Kriterium für die Schulwahl kann die Länge bzw. Beschaffenheit des zukünftigen Schulwegs eines Kindes sein. Grundsätzlich ist es aus Bürgersicht wünschenswert, die Schulanmeldung digital vozunehmen anstelle eines Vor-Ort-Termins in der jeweiligen Schule. In diesem Zusammenhang erscheint es sinnvoll, ein Formular zu gestalten, das Karteninformationen enthält, sodass die Eltern sich den zukünftigen Schulweg ihres Kindes anzeigen lassen können.
+
+\section{funktionale Anforderungen}
+Nutzer Bürger X
+Ziel des Bürgers: Der Bürger will sein Kind an einer Schule anmelden
+
+X möchte eine im Internet zu findende Webseite ansteuern, die ihm ein Formular bereitstellt zur Anmeldung seines Kindes an einer Schule	Muss	Webseite Bürger
+X möchte durch klicken eines Buttons auf der Webseite deas Anmeldeformular aufrufen	Muss	Webseite Bürger
+X möchte seine Kontaktdaten ins Formular eingeben	Muss	Formular
+X möchte den Namen seines Kindes in das Formular eingeben	Muss	Formular
+X möchte die Wohnadresse seines Kindes im Formular angeben	Muss	Formular
+X möchte die Wohnadresse des Kindes auf einer Karte dargestellt sehen (z.B. durch einen Pfeil markiert)	Muss	GIS 
+X möchte alle Schulen in einem Umkreis A um seine Wohnadresse angezeigt bekommen	Muss	GIS
+X möchte anhand eines Eingabefeldes im Formular den Umkreis A zwischen 1 und 50 km ändern können	Soll	Formular
+X möchte die angezeigten Schulen nach Schultyp filtern können	Soll	GIS / Formular
+X möchte eine Schule auswählen können durch Klicken in die Karte	Muss	GIS
+X möchte die Laufdistanz zu der ausgewählten Schule angezeigt bekommen	Soll	GIS
+X möchte anhand eines Auswahlfeldes wählen ob er die Distanz via Auto, per Fahrrad oder zu Fuß zurücklegen wird	Soll	GIS
+X möchte die Distanz via Auto, Fahrrad oder zu Fuß angezeigt bekommen	Soll	GIS
+X möchte auswählen können die Distanz via ÖPNV zurückzulegen	Kann	GIS
+X möchte zusätzlich die Fahrzeit via ÖPNV angezeigt bekommen	Kann	GIS
+X möchte die von ihm für sein Kind gewünschte Schule benennen können (Schule1)	Muss	Formular
+X möchte eine Alternative (Schule2) wählen können, falls sein Kind Schule1 nicht besuchen kann	Kann	Formular
+X möchte dan Anmeldeprozess durch Klicken eines Buttons abschließen können	Muss	Formular
+
+
+Nutzer Sachbearbeiter Y
+Ziel des Sachbearbeiters: Er möchte erkennen wieviele Anmeldungen pro Schule vorliegen und zusätzliche Daten wie z.B. Weglängen abfragen
+
+Y möchte eine Karte seines Zuständigkeitsbereichs auf einer Webseite sehen	Muss	Webseite Sachb.
+Y möchte alle Schulen (seines Zuständigkeitsbereichs) auf einer Karte sehen	Muss	GIS
+Y möchte die Anzahl aller Anmeldungen für jede Schule auf der Karte angezeigt bekommen	Muss	GIS
+Y möchte, dass alle Schulen mit mehr Anmeldungen als Plätzen in Rot markiert werden	Soll	GIS
+Y möchte eine Schule x auswählen können und die Wohnorte aller Anmeldungen in Farbe x angezeigt bekommen	Soll	GIS
+Y möchte eine zweite Schule y auswählen können und die Wohnorte aller Anmeldungen in Farbe y angezeigt bekommen 	Soll	GIS
+
+\section{nicht-funktionale Anforderungen}
+
+
+% Was sind die Anforderungen?
+% funktionale und nicht-funktionale Anforderunge
+
