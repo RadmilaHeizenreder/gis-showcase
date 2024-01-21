@@ -29,10 +29,15 @@ export class MyForm {
       console.log("formular error", e);
     }
   }
+  getMapContainer() {
+    this.form.then(() => {
+      console.log("myMap", this.mapElement);
+      return this.mapElement;
+    });
+    // return this.mapElement
+}
   getSchools(url) {
     this.form.then(() => {
-      console.log("getschools()1", this.mapElement);
-
       if (this.mapElement && this.mapElement.getMap()) {
         this.mapElement = this.mapElement.getMap();
         this.mapElement.getAllSchool(url);

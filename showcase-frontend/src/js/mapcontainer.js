@@ -16,6 +16,9 @@ export class MapContainer extends BaseMap {
     useGeographic();
   }
 
+  get(){
+    return this.map
+  }
   /**
    * Sets your address on the map.
    * @param {Array<number>} coords - The coordinates of the location from form's inputfield.

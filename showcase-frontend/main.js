@@ -8,6 +8,8 @@ const formJson = await formData.json();
 
 const form = new MyForm(formJson);
 form.getSchools(urlGetAllSchools)
+const myMap=form.getMapContainer()
+console.log("form.mapElement", myMap);
 
 const apiRouteKey = import.meta.env.VITE_API_KEY;
 const route = new RouteService(form.map, apiRouteKey);
