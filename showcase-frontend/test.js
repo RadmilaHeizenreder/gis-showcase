@@ -1,4 +1,9 @@
-import {MyGisForm} from "./src/js/gis-form";
-import {MapContainer} from "./src/js/mapcontainer";
+import {MyForm} from "./src/js/myform";
 
-const form = new MyGisForm("formio")
+const urlGetAllSchools = import.meta.env.VITE_HOST_SCHOOLS;
+const formData = await fetch(import.meta.env.VITE_FORMCONFIG);
+const formJson = await formData.json();
+
+const form = new MyForm(formJson);
+form.getSchools(urlGetAllSchools)
+

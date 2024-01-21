@@ -1,40 +1,6 @@
 {
   "components": [
     {
-      "label": "Anrede",
-      "widget": "choicesjs",
-      "tooltip": "Bitte geben Sie Anrede des Kindes an.",
-      "tableView": true,
-      "data": {
-        "values": [
-          {
-            "label": "Frau",
-            "value": "w"
-          },
-          {
-            "label": "Herr",
-            "value": "m"
-          },
-          {
-            "label": "Divers",
-            "value": "d"
-          },
-          {
-            "label": "Keine Angaben",
-            "value": "999"
-          }
-        ]
-      },
-      "validate": {
-        "required": true
-      },
-      "key": "anrede",
-      "defaultValue": "Frau",
-      "type": "select",
-      "applyMaskOn": "change",
-      "input": true
-    },
-    {
       "label": "Address",
       "tableView": false,
       "provider": "nominatim",
@@ -101,20 +67,10 @@
       ]
     },
     {
-      "label": "HTML",
-      "tag": "div",
-      "attrs": [
-        {
-          "attr": "",
-          "value": ""
-        }
-      ],
-      "content": "<h2>Map</h2>\n<div class=\"html-container\"><div class=\"map\" id=\"map-container\"></div><div class=\"tools-container\" id=\"tools-container\"></div></div>",
-      "refreshOnChange": false,
-      "key": "html",
-      "type": "htmlelement",
-      "input": false,
-      "tableView": false
+
+      "key": "myMap",
+      "type": "customMap",
+      "tooltip": "Bitte wählen Sie eine Schule aus"
     },
     {
       "label": "1. Wahl Schule",

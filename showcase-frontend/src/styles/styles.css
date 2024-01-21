@@ -19,28 +19,15 @@
     display: flex;
     overflow: hidden;
     justify-content: center;
-    height: 500px;
 }
 .map {
     flex: 20;
+    height: 500px;
     padding-right: 10px;
+    height: 500px;
 }
-.tools-container{
-    flex: 1;
-    border-radius: 5px;
-    padding: 10px;
-    color: #3C506E;
-    /* cursor: pointer; */
-    background: #d4e3fa;
-    position: relative;
-    display: block;
-}
-.tools-container h5{
-    margin: 5;
-}
-.tools-container input {
-    /* left: 10px; */
-    margin: 5;
+.ol-layer {
+    border: #ffcc33;
 }
 .ol-control.filter {
     position: static;
