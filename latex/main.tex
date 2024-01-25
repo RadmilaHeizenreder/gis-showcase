@@ -19,6 +19,8 @@
 \usepackage{hyperref}
 \usepackage{changepage}
 \usepackage{xcolor}
+\usepackage{caption}
+
 
 \hypersetup{
   colorlinks   = true,    % Colours links instead of ugly boxes
@@ -38,9 +40,6 @@
     captionpos=b             % Position der Beschriftung (unten)
 }
 
-% set wallpaper position for title page
-\addtolength{\wpXoffset}{0.0cm}
-\addtolength{\wpYoffset}{7.0cm}
 
 % define htw color for title page
 \definecolor{htwgreen}{RGB}{118,185,0}
@@ -76,6 +75,8 @@
 \input{src/4.konzeption/konzept}
 
 \input{src/5.implementierung/implementierung}
+\input{src/5.implementierung/backend}
+\input{src/5.implementierung/frontend}
 
 \input{src/6.evaluation/evaluation}
 

@@ -1,4 +1,5 @@
 \section{Geo-Datenbanken}
+\label{sec:Datenbanken}
 
 Die Speicherung, Verwaltung und Verarbeitung von Daten haben für viele Anwendungsbereiche eine große Bedeutung.  Wie \cite{brinkhoff_geodatenbanksysteme_2022} in seinem Werk über Geodatenbanksysteme erwähnt, erfüllen diese speziellen Datenbanken eine Vielzahl an Aufgaben. Sie müssen nicht nur allgemeine Anforderungen wie Sicherheit, Mehrbenutzerfähigkeit und Effizienz erfüllen, sondern auch spezifische geoinformationssystemische Funktionen bieten. Dazu gehören die Verwaltung von Geometriedaten und deren Verarbeitung. Zudem stellen sie Werkzeuge für die räumlichen Analyse von Geoobjekten bereit und halten sich an Standards, um eine möglichst große Interoperabiltät zu gewährleisten. \\
 
@@ -20,7 +21,7 @@ In der Abbildungen 2.2 und 2.3 (eigene Darstellung) wird ein Unterschied der Spe
 \end{figure}
  Die Geodatenbank haben drei Aspekte, die räumliche Daten mit einer Datenbank zu verknüpfen: Datentypen, Indizes und Funktionen.
 \begin{enumerate}
-    \item Räumliche Datentypen beziehen sich auf solche Formen wie Punkt, Linie, Polygon, Multipolygon.
+    \item Räumliche Datentypen beziehen sich auf spezialisierte Datenformate, die zur Speicherung von Geodaten verwendet werden. Dies Datentypen repräsentieren unterschiedliche geographische Elemente und Formen - Punkt (POINT), Linie (LineString) und Polygon (POLYGON).
     \item Die mehrdimensionale räumliche Indizierung ist eine Funktion, die es ermöglicht, räumliche Daten effizient zu organisieren und zu durchsuchen. Diese Indizes sind speziell für die Verarbeitung von Geodaten konzipiert und optimieren Abfragen, die sich auf die Positionen, den Abstand oder Überlappung von Geoobjekten beziehen. Sie beschleunigen die Suchanfragen, indem sie nur die relevanten Teile der Datenbank durchsuchen, anstatt jeden Datensatz einzeln zu prüfen.
     \item Räumliche Funktionen umfassen eine Sammlung von Operationen und Abfragen, die in SQL bereitgestellt sind. Dies Funktionen können verwendet werden, um räumliche Beziehungen zu bestimmen, wie z.B. zu prüfen, ob ein Punkt in einem Polygon liegt, Lienen sich kreuzen oder die nächstgelegenen Objekte zu einem gegebenen Punkt zu finden. Sie ermöglichen es, komplexe räumliche Fragen direkt in der Datenbank zu beantworten. 
 \end{enumerate}
