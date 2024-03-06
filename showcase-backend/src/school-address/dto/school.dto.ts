@@ -1,33 +1,34 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Geometry } from 'src/model';
 
 export class CreateSchoolsDto {
   @IsString()
-  schulnummer: string;
+  schoolId: string;
 
   @IsString()
-  schulform: string;
+  schoolform: string;
 
   @IsString()
   name: string;
 
   @IsString()
-  adresse: string;
+  address: string;
 
   @IsString()
-  plz: string;
+  zipCode: string;
 
   @IsString()
-  ort: string;
+  city: string;
 
   @IsNumber()
-  schueler: number;
+  numberOfStudents: number;
 
   @IsString()
-  rufnummer: string;
+  phoneNumber: string;
 
   @IsString()
   email: string;
 
   @IsNotEmpty()
-  geometry: object;
+  geometry: Geometry.Point;
 }

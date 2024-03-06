@@ -4,24 +4,27 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SchoolAddressModule } from './school-address/school-address.module';
 import { SchoolAddressEntity } from './school-address/entities/school.entity';
-import { Submission } from './submission/entities/submission.entity';
+import { SubmissionEntity } from './submission/entities/submission.entity';
+import { SchoolRoutesModule } from './school-routes/school-routes.module';
+import { SchoolRouteEntity } from './school-routes/entities/school-route.entity';
 
 @Module({
   imports: [
     SubmissionModule,
     SchoolAddressModule,
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '../.env' }),
+    SchoolRoutesModule,
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: './../.env' }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: 'postgres', //config.get<'aurora-data-api'>('TYPEORM_CONNECTION'),
+        type: 'postgres',
+        // host: config.get<'string'>('TYPEORM_HOST'),
         username: config.get<string>('TYPEORM_USERNAME'),
         password: config.get<string>('TYPEORM_PASSWORD'),
         database: config.get<string>('TYPEORM_DATABASE'),
         port: config.get<number>('TYPEORM_PORT'),
-        // entities: [__dirname + 'dist/**/*.entity{.ts, .js'],
-        entities: [SchoolAddressEntity, Submission],
+        entities: [SchoolAddressEntity, SubmissionEntity, SchoolRouteEntity],
         synchronize: true,
         autoLoadEntities: true,
         logging: true,

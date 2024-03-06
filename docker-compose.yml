@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    container_name: postgres-gis
+    container_name: $TYPEORM_HOST
     image: postgis/postgis:15-3.4-alpine
     restart: always
     environment:

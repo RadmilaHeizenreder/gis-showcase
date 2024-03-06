@@ -1,1 +1,2 @@
-export * as Geometry from './geometry';
+export * as Geometry from './geometryClass';
+export * as Enum from './enumClass';

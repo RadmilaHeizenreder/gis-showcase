@@ -2,9 +2,11 @@
   "name": "showcase-frontend",
   "version": "1.0.0",
   "description": "GIS-Integration ins FMS formio",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "http-server -c-1"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -19,10 +21,10 @@
   "dependencies": {
     "@formio/js": "^5.0.0-rc.27",
     "bootstrap": "^5.3.1",
-    "ol": "^7.5.1",
-    "popper.js": "^1.16.1"
+    "ol": "^8.1.0",
+    "openrouteservice-js": "^0.3.2"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "vite": "^4.4.9"
   }
 }

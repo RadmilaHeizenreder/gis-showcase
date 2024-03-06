@@ -1,13 +1,10 @@
-import { IsObject, IsString } from 'class-validator';
-import { Geometry } from 'src/model';
+import { IsObject } from 'class-validator';
+import { SchoolRouteEntity } from 'src/school-routes/entities/school-route.entity';
 
 export class CreateSubmissionDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  address: string;
+  @IsObject()
+  submission: any;
 
   @IsObject()
-  geometry: Geometry.Point;
+  routes: SchoolRouteEntity[];
 }
