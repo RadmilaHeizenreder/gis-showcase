@@ -6,8 +6,10 @@ const urlGetAllSchools = import.meta.env.VITE_HOST_SCHOOLS;
 const formData = await fetch(import.meta.env.VITE_FORMCONFIG);
 const formJson = await formData.json();
 
-const form = new MyForm(formJson, "map-container", "tools-container");
-form.map.getAllSchool(urlGetAllSchools);
+const form = new MyForm(formJson);
+form.getSchools(urlGetAllSchools)
+const myMap=form.getMapContainer()
+console.log("form.mapElement", myMap);
 
 const apiRouteKey = import.meta.env.VITE_API_KEY;
 const route = new RouteService(form.map, apiRouteKey);

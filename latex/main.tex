@@ -1,0 +1,92 @@
+% Created by Christoph Jansen
+% License: CC BY 4.0 http://creativecommons.org/licenses/by/4.0/
+% Source: https://github.com/Gnork/htw-latex-template
+% THIS TEMPLATE IS NOT OFFICIAL
+% Offical .doc template: http://www.htw-berlin.de/hochschulstruktur/zentrale-referate/presse-und-oeffentlichkeitsarbeit/abschlussarbeiten-vorlagen/
+
+\documentclass[12pt, a4paper]{book}
+\usepackage[twoside=false,margin=2.5cm,bindingoffset=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{bibgerm}
+\usepackage{natbib}
+\usepackage{ngerman}
+\usepackage{graphicx}
+\usepackage{wallpaper}
+\usepackage{textpos}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{changepage}
+\usepackage{xcolor}
+\usepackage{caption}
+
+
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = black,    % Colour of internal links
+  citecolor    = black      % Colour of citations
+}
+\lstset{
+    basicstyle=\ttfamily,    % Schriftart
+    breaklines=true,         % Automatischer Zeilenumbruch
+    breakindent=0pt,         % Keine Einrückung beim Zeilenumbruch
+    breakatwhitespace=false, % Zeilenumbrüche können an jedem Zeichen erfolgen
+    frame=none,              % Kein Rahmen um den Code
+    xleftmargin=0pt,         % Keine Einrückung auf der linken Seite
+    xrightmargin=0pt,        % Keine Einrückung auf der rechten Seite
+    tabsize=4,               % Tabulatorgröße
+    captionpos=b             % Position der Beschriftung (unten)
+}
+
+
+% define htw color for title page
+\definecolor{htwgreen}{RGB}{118,185,0}
+% \input{rules}
+
+\begin{document}
+
+% Titelseite mit speziellem Seitenstil
+% \thispagestyle{titlestyle}
+\input{src/titlepage}
+\frontmatter
+% \input{leitfaden}
+\input{src/erklaerung}
+\input{src/kurzfassung}
+\tableofcontents
+\listoffigures
+\mainmatter
+\input{src/1.einleitung/einleitung}
+\input{src/1.einleitung/motivation}
+\input{src/1.einleitung/forschungsfrage}
+\input{src/1.einleitung/vorgehensweise}
+
+\input{src/2.grundlagen/grundlagen}
+\input{src/2.grundlagen/formular}
+\input{src/2.grundlagen/fms}
+\input{src/2.grundlagen/geodaten}
+\input{src/2.grundlagen/datenbank}
+\input{src/2.grundlagen/gis}
+\input{src/2.grundlagen/openlayers}
+
+\input{src/3.anforderung/anforderungen}
+
+\input{src/4.konzeption/konzept}
+
+\input{src/5.implementierung/implementierung}
+\input{src/5.implementierung/backend}
+\input{src/5.implementierung/frontend}
+
+\input{src/6.evaluation/evaluation}
+
+\input{src/8.fazit/fazit}
+% \input{src/7.begriffe/rendern}
+% \input{src/7.begriffe/webhook}
+
+\appendix
+\input{appendix/apA} % Appendix A
+\backmatter
+\bibliographystyle{apalike}
+\bibliography{data/literaturverzeichnis}
+\end{document}

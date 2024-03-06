@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "type": "giscomponent",
+      "key": "meineGisKomponente",
+      "label": "GIS Karte", 
+      "mapContainerId": "map-container"
+    }
+  ]
+}

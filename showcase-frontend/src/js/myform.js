@@ -1,12 +1,11 @@
-import { Formio } from "@formio/js";
-import { MapContainer } from "./mapcontainer";
-import { GisTools } from "./gis-tools";
+import { Formio, Utils } from "@formio/js";
+import CustomMapComponent from "../gis-custom/gisComponent";
+Formio.use(CustomMapComponent);
 
 export class MyForm {
-  constructor(formJson, targetMap, targetGis) {
+  constructor(formJson) {
+    this.mapElement = undefined;
     this.form = this.initForm(formJson);
-    this.map = new MapContainer(targetMap);
-    this.gisTools = new GisTools(targetGis);
   }
 
   async initForm(formJson) {
@@ -15,20 +14,35 @@ export class MyForm {
         document.getElementById("formio"),
         formJson
       );
-      const htmlComponent = this.form.components.find((component) => {
-        return component.type === "htmlelement";
-      });
+      this.mapElement = this.form.getComponent("myMap");
 
-      if (
-        htmlComponent &&
-        htmlComponent.component.content.includes('div class="map"')
-      ) {
+      // await Utils.eachComponent(this.form.components, (component) => {
+      //   console.log(component);
+      // });
+
+      if (this.mapElement && this.mapElement.getMap()) {
+        // this.mapElement = this.mapElement.getMap();
         this.showAddressInput();
       }
       this.submitEvent();
     } catch (e) {
       console.log("formular error", e);
     }
+  }
+  getMapContainer() {
+    this.form.then(() => {
+      console.log("myMap", this.mapElement);
+      return this.mapElement;
+    });
+    // return this.mapElement
+}
+  getSchools(url) {
+    this.form.then(() => {
+      if (this.mapElement && this.mapElement.getMap()) {
+        this.mapElement = this.mapElement.getMap();
+        this.mapElement.getAllSchool(url);
+      }
+    });
   }
 
   showAddressInput() {
@@ -37,8 +51,8 @@ export class MyForm {
         const { changed, data } = event;
         if (changed?.component.key === "address1") {
           // Entferne zuerst den aktuellen Punkt von der Karte, falls vorhanden
-          this.map.removeLocationFeature();
-          // this.gisTools.gisContainer.style.display = "none";
+          this.mapElement.removeLocationFeature();
+          console.log("showAddressInput", this.mapElement);
           const { address1 } = data;
           if (address1?.lon && address1?.lat) {
             const { road, house_number, postcode, city } = address1.address;
@@ -48,13 +62,9 @@ export class MyForm {
               parseFloat(address1.lon),
               parseFloat(address1.lat),
             ];
-            this.map.setLocationFeature(webMercatorCoords);
-            // this.gisTools.gisContainer.style.display = "block";
-            this.gisTools.addInputFieldValue(address);
+            this.mapElement.setLocationFeature(webMercatorCoords);
           } else {
-            this.map.removeLocationFeature();
-            // this.gisTools.gisContainer.style.display = "none";
-            // alle erstellten routen müssen entfernt werden
+            this.mapElement.removeLocationFeature();
           }
         }
       });
@@ -65,7 +75,7 @@ export class MyForm {
   updateAddressInput() {
     this.form.on("change", async (event) => {
       if (event.changed && event.changed.component.key === "address1") {
-        this.map.setLocationFeature(addressCoords);
+        this.mapElement.setLocationFeature(addressCoords);
       }
     });
   }

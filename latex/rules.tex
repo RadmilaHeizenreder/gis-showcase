@@ -1,0 +1,20 @@
+% Inhaltsverezichnis Stil - Abstand zw. Punkten und dem Überschrift und Verzeichnis
+\setlength{\cftaftertoctitleskip}{30pt}
+\renewcommand{\cftdotsep}{2.5}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% % Seitenstil für die Titelseite definieren (leere Kopf- und Fußzeile)
+% \fancypagestyle{titlestyle}{
+%   \fancyhf{} % clear all header and footer fields
+%   \renewcommand{\headrulewidth}{0pt} % remove the header rule
+%   \renewcommand{\footrulewidth}{0pt} % remove the footer rule
+% }
+
+% % Seitenstil für den Hauptteil definieren
+% \pagestyle{fancy}
+% \fancyhf{} % clear all header and footer fields
+% \fancyhead[C]{\leftmark} % zentrierte Kopfzeile mit dem Namen des aktuellen Kapitels
+% \renewcommand{\headrulewidth}{0.4pt} % Linie unter der Kopfzeile
+% \renewcommand{\footrulewidth}{0pt} % keine Linie unter der Fußzeile
+
+% Anpassung der Kapitelmarkierung, um die Section anzuzeigen statt Chapter
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}

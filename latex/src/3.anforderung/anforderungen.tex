@@ -1,0 +1,72 @@
+\chapter{Anforderungen}
+\label{cha:anforderungen}
+
+Ziel des Projektes ist eine Möglichkeit zu bieten, neu Funktionen zu konzipieren und diese in die Formulare einzubauen. Dafür wird im Rahmen der Digitalisierung der Verwaltungsprozesse an einem Beispiel Schulanmeldung ein Formular gebaut, indem ein implementiertes Geoinformationssystem integriert wird. Die Entwicklung eines Showcases für die Schulanmeldung in NRW wird durch spezifische Anforderungen geleitet, die vom Unternehmen Telekom MMS GmbH vorgegeben wurden. Diese Anforderungen adressieren die Bedürfnisse zweier Hauptnutzergruppen: BürgerInnen (Eltern oder Erziehungsberechtigte) und Sachbearbeiter.\\
+
+
+\section{Nutzungskonzept}
+Die Anmeldung von Kindern an einer Schule erfolgt in Deutschland durch seine Eltern oder andere Erziehungsberechtigte (User). Dabei gelten bzgl. der Möglichkeiten zur Schulwahl je nach Bundesland Einschränkungen. Insbesondere in Hamburg und NRW gibt es aber eine Möglichkeit zur weitgehend freien Schulwahl: Eltern können sich frei zwischen allen Schulen im Stadt- bzw. Einzugsgebiet entscheiden \citep{schulwahl_nrw}. Ein Kriterium für die Schulwahl kann die Länge bzw. Beschaffenheit des zukünftigen Schulweges eines Kindes sein. Grundsätzlich ist es aus BürgerInnensicht wünschenswert, die Schulanmeldung digital vorzunehmen anstelle eines Vor-Ort-Termins in der jeweiligen Schule. Aus der SachbearbeiterInnensicht ist es effizient, ein Überblick von Anmeldungen und dazugehörigen Schulwege zu bekommen, um Auslastung der Schulen zu kontrollieren und Wege kindgerecht zu gestalten. In diesem Zusammenhang erscheint es sinnvoll, ein Formular zu gestalten, das Karteninformationen enthält, sodass die Eltern sich die Schulen im Umgebung und den zukünftigen Schulweg ihres Kindes anzeigen lassen können.\\
+
+Das Showcase sollte folgendes Szenario abdecken: Eine intuitive und interaktive Webanwendung, auf der die Möglichkeit gibt, die Schulanmeldungen innerhalb des Stadtsgebiets von Münster in NRW vorzunehmen und all diese Anmeldungen geographisch zu wiedergeben. Dabei soll das System nicht nur grundlegende Formularfunktionen bieten, sondern auch erweiterte GIS-basierte Features integrieren.
+
+\section{funktionale Anforderungen}
+
+Basierend auf dem Beispielszenario sind folgende funktionale Anforderungen vom Unternehmen definiert:
+
+\begin{center}
+    \begin{tabular}{l p{8cm} c c}
+        \hline
+        \textbf{Nr.} & \textbf{Beschreibung} & \textbf{Priorität} & \textbf{Kategorie} \\ \hline
+            FR1 &\textbf{Zugang zur Webseite:} User X kann eine Webseite aufzurufen, die ein Anmeldeformular für Schulwahl bereitstellt. &Muss &Webseite \\ 
+            FR2 & \textbf{Formularaufruf:} Durch Klicken eines Buttons auf der Webseite soll User X das Anmeldeformular öffnen können. &Muss &Webseite \\ 
+            FR3 & \textbf{Eingabe persönlicher Daten:} User X muss persönliche Kontaktdaten sowie den Namen und die Wohnadresse seines Kindes im Formular angeben können. &Muss &Formular \\ 
+            FR4 & \textbf{Darstellung der Wohnadresse auf einer Karte:} Die Wohnadresse des Kindes soll auf einer Karte visualisiert werden. &Muss &GIS \\
+            FR5 & \textbf{Anzeige von Schulen im Umkreis:} Alle Schulen im definierten Umkreis A um die Wohnadresse sollen auf der Karte dargestellt werden. &Muss &GIS \\ 
+            FR6 & \textbf{Anpassung des Umkreises:} User X sollte den Umkreis A im Formular zwischen 1 und 50 km ändern können. &Soll &Formular \\ 
+            FR7 & \textbf{Filterung nach Schultyp:} Die Möglichkeit, die angezeigten Schulen nach Schultyp zu filtern. &Soll &GIS/Formular \\ 
+            FR8 & \textbf{Schulauswahl über Karte:} User X kann eine Schule durch Klicken auf der Karte auswählen. &Muss &GIS \\ 
+            FR9 & \textbf{Anzeige der Laufdistanz:} Die Laufdistanz zur ausgewählten Schule soll angezeigt werden. &Soll &GIS \\ 
+            FR10 & \textbf{Auswahl des Transportmittels:} User X kann wählen, ob die Distanz per Auto, Fahrrad, zu Fuß oder ÖPNV zurückgelegt wird. &Soll &GIS \\ 
+            FR11 & \textbf{Angabe der gewünschten Schule:} User X benennt die bevorzugte Schule (Schule1) und eine alternative Schule (Schule2). &Muss &Formular \\ 
+            FR12 & \textbf{Abschluss des Anmeldeprozesses:} User X soll den Anmeldeprozess durch Klicken eines Buttons abschließen können. &Muss &Formular \\ \hline
+    \end{tabular}
+\captionof{table}{Übersicht der Funktionen für Bürger}
+\label{tab:meineTabelle}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{l p{8cm} c c}
+        \hline
+        \textbf{Nr.} & \textbf{Beschreibung} & \textbf{Priorität} & \textbf{Kategorie} \\ \hline
+            FR13 & \textbf{Kartenansicht:} User Y möchte eine Karte seines Zuständigkeitsbereichs auf einer Webseite sehen. &Muss &Webseite/GIS \\ 
+            FR14 & \textbf{Anzeige aller Schulen:} Alle Schulen des Zuständigkeitsbereichs sollen auf der Karte dargestellt werden. &Muss &GIS \\ 
+            FR15 & \textbf{Anzeige der Anmeldezahlen:} Die Anzahl aller Anmeldungen pro Schule soll auf der Karte sichtbar sein. &Muss &GIS \\ 
+            FR16 & \textbf{Markierung überfüllter Schulen:} Schulen mit mehr Anmeldungen als verfügbare Plätze sollen hervorgehoben werden. &Soll &GIS \\ 
+            FR17 & \textbf{Detailansicht für Schulen:} User Y möchte Wohnorte aller Anmeldungen pro ausgewählter Schule in unterschiedlichen Farben sehen. &Soll &GIS \\ \hline
+        \end{tabular}
+    \captionof{table}{Funktionale Anforderungen für Sachbearbeiter}
+    \label{tab:sachbearbeiterAnforderungen}
+\end{center}
+
+\section{nicht-funktionale Anforderungen}
+In dieser Arbeit liegt der Fokus nicht auf dem Design der Webanwendung, daher werden nur grundlegende nicht-funktionale Anforderungen berücksichtigt:
+
+\begin{center}
+\begin{tabular}{l p{8cm} c c}
+    \hline
+    \textbf{Nr.} & \textbf{Beschreibung} & \textbf{Priorität} & \textbf{Kategorie} \\ \hline
+    NF1 & \textbf{Zuverlässigkeit:} Das System sollte stabil und fehlerfrei funktionieren, insbesondere die GIS-Integration und Formularverarbeitung. &Muss &Frontend \\ 
+    NF2 & \textbf{Benutzerfreundlichkeit:} Trotz des technischen Fokus sollte die Anwendung intuitiv und einfach zu bedienen sein, um eine Benutzerakzeptanz zu gewährleisten. &Muss &Frontend \\ 
+    NF3 & \textbf{Datennutzung:} Eingegebene Daten sollten in einer Datenbank abgespeichert werden, um diese farblich darzustellen. &Muss &System \\ 
+    NF4 & \textbf{Performance:} Schnelle Ladezeiten und reibungslose Funktionsweise, insbesondere bei der Kartenintegration. &Muss &System \\
+    NF5 & \textbf{Erweiterbarkeit:} Das System sollte flexibel sein, um zukünftige Erweiterungen und Anpassungen zu ermöglichen. &Muss &System \\
+    NF5 & \textbf{Modularität des GIS-Komponentes:} Dieser sollte als eigenständiges, gekapseltes Modul konzipiert werden. &Kann &System \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Nicht-funktionale Anforderungen}
+\label{tab:nichtFunktionaleAnforderungen}
+
+
+% Was sind die Anforderungen?
+% funktionale und nicht-funktionale Anforderunge
+

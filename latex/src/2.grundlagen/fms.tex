@@ -1,0 +1,103 @@
+\section{Formularmanagementsystem Form.io}
+\label{sec:Form.io}
+
+FMS ist eine zentrale und redundanzfreie Formularverwaltung. Es bietet eine einfachere Erstellung von digitalen Formularen an, erfüllt die Anforderungen der barrierefreien Informationstechnik-Verordnung des Bundes, spart Zeit, Papier und Geld. Es ist ein Werkzeug, das für Organisationen und Institutionen konzepiert wurde, die eine Vielzahl von Online-Formularen modellieren und verwalten müssen. Dies umfasst solcher Anwendern wie Unternehmen, Gesundheitswesen, Bildungseinrichtungen, Finanzinstitute, öffentliche Verwaltung und Regierungsbehörden. \\
+
+Die Telekom MMS GmbH verwendet als Grundlage für die Digitalisierung der Verwaltungsdienste eine leistungsstarke FMS einer Firma Form.io \citep{formio}. Durch ihre Flexibilität und umfangreiche Anpassungsmöglichkeiten können Anforderungen des OZG erfüllt werden.\\
+
+
+\textcolor{red}{Form.io ist ein webbasiertes Tool, das für die schnelle Erstellung und effiziente Verwaltung von Online-Formularen entwickelt wurde. Es kombiniert Formularmodellierung und Datenmanagement in einer einzigen Anwendung, welche eine Integration in diverse Softwareumgebungen bietet}. Dieses Tool ermöglicht, Formulare mit einem Drag-and-Drop-Baukasten zu erstellen, jeder einzelnen Element zu spezifizieren, NutzerInnen anzulegen und ihre Rechte zu verwalten und Formular-Submissions zu managen. Der Baukasten ist einzigartig, weil mit ihm nicht nur HTML-Formulare erstellt, sondern auch JSON-Schemata-Darstellungen der Formularen für die Anwendungsentwicklung erzeugt werden können. Sowie NutzerInnen, Zugriffsrechte und Daten (erstellte Formulare und ihre Submissions) werden in dem System klar definiert, gespeichert und verwaltet.\\
+% hier noch mal die Nutzer und Datenverwaltung angehen.
+
+\textcolor{red}{Einer der wichtigsten Unterschiede zwischen Form.io und anderen Formularprodukten dabei ist die Art und Weise, wie die Formulare in der Anwendung gerendert werden. Die meisten Plattformen rendern Formulare auf  dem Server (unter Verwendung von Technologien wie PHP, .NET, Java usw.) und senden dann den gerenderten Formular-HTML-Code an Browser.} Dieser Ansatz hat viele Probleme beim Round-Trip-Zeiten, Skalierbarkeit und Flexibilität. Form.ioFormulare kö dem Form.io Builder erstellt werden, werden als JSON-Schemata dargestellt, die dann direkt in der Anwendung mithilfe einer JavaScript-Rendering-Engine gerendert werden oder per REST-API abgerufen. Neben der Form.io Plattform stehen Formio-JavaScript Bibliothek und weitere Integrationen zur Verfügung. Form.io wird auch in verschiedenen Frameworks wie Angular, Vue, React unterstützt. Hier sind einige Möglichkeiten und Lösungen der Form.io aufgelistet:
+\begin{itemize}
+    \item \textbf{Command Line Interface (CLI):} Für die Interaktion mit Form.io über die Kommandozeile.
+    \item \textbf{Webhook Receiver:} Für die automatisierte Nachrichten oder Daten von einem Webhook zu empfangen. Ein Webhook ist eine Methode, mit der eine Anwendung oder ein Dienst Echtzeit-Informationen an andere Anwendungen oder Dienste übermitteln kann, sobald ein bestimmtes Ereignis eintritt.
+    \item \textbf{File Upload Proxy Server:} Diese Bibliothek bietet einen Upload-Server/Proxy für die Verwendung mit der Form.io Dateikomponente und URL-Konfiguration. Dies ermöglicht das Hochladen und Herunterladen privater Dateien durch Senden, basierend auf seinem Zugriff auf das Senden des Formulars bzw. das Abrufen des Übermittlungs-JSON. 
+    \item \textbf{JavaScript API:} Eine Schnittstelle, um mit den Form.io APIs innerhalb einer JavaScript-Anwendung zu kommunizieren. Beispiel:
+    \begin{adjustwidth}{-5em}{0pt}
+    \begin{lstlisting}[language=HTML]
+        <script src="https://cdn.form.io/formiojs/formio.min.js"></script>
+        <script type="text/javascript">
+            // Load a form.
+            const formio = new Formio('https://formio.com/myproject');
+            formio.loadForms().then((forms) => {
+              console.log(forms);
+            });
+        </script>
+    \end{lstlisting}
+    \end{adjustwidth}
+    \item \textbf{Form Renderer:} Kernbibliothek zur Darstellung von Form.io Formularen, die aus einem JSON-Schema erstellt wurden. Beispiel:
+    \begin{adjustwidth}{-5em}{0pt}
+    \begin{lstlisting}[language=HTML]
+        <div id="formio"></div>
+        <script type="text/javascript">
+            Formio.createForm(document.getElementById('formio'), {
+                components: [
+                {
+                    type: 'textfield',
+                    key: 'firstName',
+                    label: 'First Name'
+                },
+                {
+                    type: 'email',
+                    key: 'email',
+                    label: 'Email'
+                },
+                {
+                    type: 'button',
+                    key: 'submit',
+                    label: 'Submit'
+                }]
+            });
+        </script>
+    \end{lstlisting}
+    \end{adjustwidth}
+    \item \textbf{Form Builder:} Ein Werkzeug, das in der Anwendung eingebettet werden kann, um einen Formularbaukasten zur Verfügung zu stellen. Mit diesem können NutzerInnen Formulare direkt in der Anwendung erstellen.
+    \begin{adjustwidth}{-5em}{0pt}
+    \begin{lstlisting}[language=HTML]
+        <div id="builder"></div>
+        <script type="text/javascript">
+            Formio.createForm(document.getElementById('builder'), {}, {});
+        </script>
+    \end{lstlisting}
+    \end{adjustwidth}
+    \item \textbf{Form Embedding:} Ermöglich die Einbettung eines Formulars in der Anwendung durch Einbindung eines einzigen Script-Tags
+    \begin{adjustwidth}{-5em}{0pt}
+    \begin{lstlisting}[language=HTML]
+        <script src="https://cdn.form.io/formiojs/formio.embed.min.js?src=https://examples.form.io/examples"></script>
+    \end{lstlisting}
+    \end{adjustwidth}
+    Dies ermöglicht es, Formulare von Form.io direkt und ohne großen Entwicklungsaufwand in die Webseite zu integrieren.
+    \item \textbf{Form Utilities:} Eine Sammlung von nützlichen JavaScript-Hilfsmitteln, die häufig benötigten Funktionen in Anwendungen anbietet. Sie ist ein Teil des formiojs Bibliothek. Beispiel:
+    \begin{adjustwidth}{-5em}{0pt}
+    \begin{lstlisting}[language=HTML]
+        <script type="text/javascript">
+            var utils = require('formiojs/utils');
+            utils.eachComponent(form.components, component => {
+                // Do something...
+            })
+        </script>
+    \end{lstlisting}
+    \end{adjustwidth}
+\end{itemize}
+
+Nachdem das umfassende Ökosystem von Form.io und seine Möglichkeiten erläutert wurden, ist es wesentlich, die vielseitigen Komponenten von Form.io zu betrachten. Ein weiterer Aspekt von Form.io ist die Möglichkeit, jede Komponente individuell zu gestalten. Von einfachen Textfeldern und Auswahloptionen bis hin zu komplexeren Elementen wie Datumsauswahlen und Dateiuploads - jede Komponente kann modifiziert und in das Formular integriert werden.
+
+... beschreiben, welche Komponenten es gibt.
+
+... beschreiben, welcher Komponente wird als Grundlage für die Integration genommen wird.
+
+... Übergang zur Geodaten
+
+
+
+
+
+
+
+
+
+% Form.io ist ein webbasiertes Tool, das für die schnelle Erstellung und effiziente Verwaltung von Online-Formularen entwickelt wurde. Es kombiniert Formularmodellierung und Datenmanagement in einer einzigen Anwendung, welche eine Integration in diverse Softwareumgebungen ermöglicht.
+
+% Dieses Schema wird dann verwendet, um das Formular dynamisch in Serverlose-Anwendungen (wie Angular, React usw.) zu rendern und gleichzeitig eine REST-API zur Unterstützung dieses Formulars automatisch zu generieren
