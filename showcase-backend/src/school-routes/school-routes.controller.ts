@@ -10,7 +10,7 @@ import { SchoolRoutesService } from './school-routes.service';
 import { CreateSchoolRouteDto } from './dto/create-school-route.dto';
 import { SchoolRouteEntity } from './entities/school-route.entity';
 
-@Controller('routes')
+@Controller('api/v1/routes')
 export class SchoolRoutesController {
   constructor(private readonly schoolRoutesService: SchoolRoutesService) {}
 

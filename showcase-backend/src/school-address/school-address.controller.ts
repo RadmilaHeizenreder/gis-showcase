@@ -3,7 +3,7 @@ import { SchoolAddressService } from './school-address.service';
 import { CreateSchoolsDto } from './dto/school.dto';
 import { SchoolAddressEntity } from './entities/school.entity';
 
-@Controller('school')
+@Controller('api/v1/school')
 export class SchoolAddressController {
   constructor(private readonly schoolAddressService: SchoolAddressService) {}
 
@@ -11,6 +11,12 @@ export class SchoolAddressController {
   findAll() {
     return this.schoolAddressService.findAll();
   }
+
+  @Get(':level')
+  findSchoolOfKind(@Param('level') level: number) {
+    return this.schoolAddressService.findSchoolByLevel(level);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.schoolAddressService.findOne(+id);

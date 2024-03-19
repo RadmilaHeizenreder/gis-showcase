@@ -18,7 +18,7 @@ export class SchoolRouteEntity {
   @JoinColumn({ name: 'schoolId' })
   schoolId: SchoolAddressEntity;
 
-  @ManyToOne(() => SubmissionEntity, (route) => route.routes) // ???
+  @ManyToOne(() => SubmissionEntity, (route) => route.routes)
   @JoinColumn({ name: 'submissionId' })
   submissionId: SubmissionEntity;
 
