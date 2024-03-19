@@ -15,47 +15,45 @@ export class MyStyle {
         return new Style({
           stroke: new Stroke({
             color: "#4804f4db",
-            width: 2,
+            width: 4,
           }),
         });
-      default:
-        return new Style();
-    }
-  }
-  static setStyleOnPrio(feature) {
-    let color;
-    const prio = feature.get('route').prio
-    switch (prio){
-      case 1:
-        return new Style({
-          stroke: new Stroke({
-            color: "#26bb0cc7",
-            width: 4
-          })
-        })
-      case 2:
-        return new Style({
-          stroke: new Stroke({
-            color: "#f40418db",
-            width: 4
-          })
-        })
       default:
         return new Style({
           stroke: new Stroke({
             color: "#fff000",
-            width: 2
-          })
-        })
+            width: 5,
+          }),
+        });
     }
-    // return new Style({
-    //   stroke: new Stroke({
-    //     color: color,
-    //     width: 4
-    //   })
-    // })
   }
-  static setLocationStyle(){
+  static setStyleOnPrio(feature) {
+    const prio = feature.get("route")?.prio;
+    switch (prio) {
+      case 1:
+        return new Style({
+          stroke: new Stroke({
+            color: "#26bb0cc7",
+            width: 4,
+          }),
+        });
+      case 2:
+        return new Style({
+          stroke: new Stroke({
+            color: "#f40418db",
+            width: 4,
+          }),
+        });
+      default:
+        return new Style({
+          stroke: new Stroke({
+            color: "#4804f4db",
+            width: 6,
+          }),
+        });
+    }
+  }
+  static setLocationStyle() {
     return new Style({
       image: new Circle({
         radius: 7,

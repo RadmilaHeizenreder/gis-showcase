@@ -16,18 +16,23 @@
     border-radius: 5px;
 }
 .html-container{
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* display: flex; */
 }
 .map {
-    flex: 20;
-    height: 500px;
+    /* flex: 20; */
     padding-right: 10px;
-    height: 500px;
+    height: 600px;
 }
-.ol-layer {
-    border: #ffcc33;
+.tools-container{
+    flex: 1;
+    border-radius: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    height: 600px;
+    background: #d4e3fa;
+    
 }
 .ol-control.filter {
     position: static;
@@ -90,15 +95,16 @@
     padding: 0; /* Oder passen Sie den Innenabstand nach Bedarf an */
 }
 .ol-control.draw-line-btn{
-    top: 10px;
+    top: 90px;
+    /* left: 10px; */
     display: block;
 }
 .ol-control.choice-line-btn.choice1{
-    top: 50px;
+    top: 10px;
     display: flex;
 }
 .ol-control.choice-line-btn.choice2{
-    top: 90px;
+    top: 50px;
     display: flex;
 }
 .ol-control.delete-line-btn{

@@ -8,16 +8,8 @@
     "build": "vite build",
     "serve": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RadmilaHeizenreder/gis-showcase.git"
-  },
   "author": "Radmila Heizenreder",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RadmilaHeizenreder/gis-showcase/issues"
-  },
-  "homepage": "https://github.com/RadmilaHeizenreder/gis-showcase#readme",
   "dependencies": {
     "@formio/js": "^5.0.0-rc.27",
     "bootstrap": "^5.3.1",

@@ -73,7 +73,7 @@
                                 ]
                               },
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "key": "anredeSchulpflichtige",
                               "properties": {
@@ -124,7 +124,7 @@
                               "tooltip": "Geben Sie den Nachnamen, Familiennamen bzw. Zunamen an.",
                               "key": "familiennameSchulpflichtige",
                               "validate": {
-                                "required": false,
+                                "required": true,
                                 "minLength": "1",
                                 "maxLength": "120"
                               }
@@ -144,7 +144,7 @@
                               "tooltip": "Geben Sie alle Vornamen des Kindes an.",
                               "tableView": true,
                               "validate": {
-                                "required": false,
+                                "required": true,
                                 "minLength": "1",
                                 "maxLength": "80"
                               },
@@ -184,7 +184,7 @@
                                 "maxDate": "2018-12-31T12:00:00+01:00"
                               },
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "enableMinDateInput": false,
                               "enableMaxDateInput": false,
@@ -224,7 +224,7 @@
                               "label": "Geburtsort/-land",
                               "tableView": true,
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "key": "geburtsortLand",
                               "type": "textfield",
@@ -270,7 +270,7 @@
                               "label": "Staatsangehörigkeit",
                               "tableView": true,
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "key": "staatsangehorigkeit",
                               "type": "textfield",
@@ -556,7 +556,7 @@
                                 ]
                               },
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "key": "anredeErziehungsberechtigte1",
                               "type": "select",
@@ -734,7 +734,7 @@
                                 ]
                               },
                               "validate": {
-                                "required": false
+                                "required": true
                               },
                               "key": "anredeErziehungsberechtigte2",
                               "type": "select",
@@ -904,9 +904,6 @@
                   "components": [
                     {
                       "label": "Anschrift",
-                      "validate": {
-                        "required": true
-                      },
                       "tableView": false,
                       "provider": "nominatim",
                       "key": "wohnortdeskindes-address",
@@ -1067,11 +1064,21 @@
                   "tableView": false,
                   "components": [
                     {
-                      "key": "myMap",
-                      "type": "customMap",
-                      "tableView": false,
-                      "input": false                      
-                    }  
+                      "label": "HTML",
+                      "tag": "div",
+                      "attrs": [
+                        {
+                          "attr": "",
+                          "value": ""
+                        }
+                      ],
+                      "content": "<div class=\"html-container\"><div class=\"map\" id=\"map-container\"></div></div>",
+                      "refreshOnChange": false,
+                      "key": "map-container",
+                      "type": "htmlelement",
+                      "input": false,
+                      "tableView": false
+                    }
                   ]
                 },
                 {
