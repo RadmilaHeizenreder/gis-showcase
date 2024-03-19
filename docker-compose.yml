@@ -9,7 +9,37 @@ services:
       - POSTGRES_USER=${TYPEORM_USERNAME}
       - POSTGRES_PASSWORD=${TYPEORM_PASSWORD}
       - POSTGRES_DB=${TYPEORM_DATABASE}
-    volumes:
-      - ./pgdata:/var/lib/postgressql/data
+    # volumes:
+    #   - ./pgdata:/var/lib/postgresql/data
     ports:
       - ${TYPEORM_PORT}:${TYPEORM_PORT}
+  frontend:
+    container_name: gis-frontend
+    image: node:18
+    working_dir: /home/node/app
+    volumes:
+      - ./gis-frontend:/home/node/app
+    expose:
+      - ${VITE_PORT}
+    ports:
+      - ${VITE_PORT}:${VITE_PORT}
+    command: bash -c "npm install && npm start -- --host 0.0.0.0"
+    environment:
+      - CHOKDIR_USERPOOLING=true
+    env_file:
+      - .env
+  backend:
+    container_name: gis-backend
+    image: node:18
+    working_dir: /home/node/app
+    volumes:
+      - ./backend:/home/node/app
+    expose:
+      - ${API_PORT}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    command: bash -c "npm install && npm run start:dev"
+    environment:
+      - CHOKDIR_USERPOOLING=true
+    env_file:
+      - .env

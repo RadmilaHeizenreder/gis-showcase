@@ -4,7 +4,7 @@ import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { SubmissionEntity } from './entities/submission.entity';
 // import { SchoolRoutesService } from 'src/school-routes/school-routes.service';
 
-@Controller('/submission')
+@Controller('api/v1/submission')
 export class SubmissionController {
   constructor(
     private readonly submissionService: SubmissionService, // private readonly schoolRoutesService: SchoolRoutesService,
