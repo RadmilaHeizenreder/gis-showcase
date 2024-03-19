@@ -20,9 +20,9 @@ export class MyForm {
       this.mapElement = this.form.getComponent("myMap");
       const map = this.mapElement.map;
 
-      const childAddressComponent = this.form.getComponent(
-        "wohnortdeskindes-address"
-      );
+      // const childAddressComponent = this.form.getComponent(
+      //   "wohnortdeskindes-address"
+      // );
       this.form.on("change", (event) => {
         if (event.changed.component.key === "wohnortdeskindes-address") {
           console.log("change address", event.data["wohnortdeskindes-address"]);

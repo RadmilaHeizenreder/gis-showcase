@@ -34,18 +34,16 @@ export class MyForm {
 
       this.map = new MapContainer(targetMap, options, this.form);
 
-      const childAddressComponent = this.form.getComponent(
-        "wohnortdeskindes-address"
-      );
-      if (childAddressComponent) {
-        this.showChildAddress(childAddressComponent);
-      }
-
-      const gradeLevelComponent = this.form.getComponent("grade-level");
-      if (gradeLevelComponent) {
-        this.showSchoolsOfKind(gradeLevelComponent, urlSchoolOfKind);
-      }
-      console.log(this.form._form);
+      this.form.on("change", (event) => {
+        if (event.changed.component.key === "wohnortdeskindes-address") {
+          console.log("change address", event.data["wohnortdeskindes-address"]);
+          this.showChildAddress(this.map, event);
+        }
+        if (event.changed.component.key === "grade-level") {
+          console.log("change level", event.data["grade-level"]);
+          this.showSchoolsOfKind(this.map, event, urlSchoolOfKind);
+        }
+      });
       this.submitEvent();
     } catch (e) {
       console.log("formular error", e);
@@ -55,22 +53,17 @@ export class MyForm {
   /**
    * Shows the address input on the form and updates the map based on the address changes.
    */
-  showChildAddress(addressComponent) {
+  showChildAddress(map, event) {
     try {
-      addressComponent.on("change", (changed) => {
-        this.map.removeLocationFeature();
-        const address = changed.data["wohnortdeskindes-address"];
-        if (address?.lon && address?.lat) {
-          const webMercatorCoords = [
-            parseFloat(address.lon),
-            parseFloat(address.lat),
-          ];
-          this.map.setLocationFeature(webMercatorCoords);
-        } else {
-          this.map.removeLocationFeature();
-          this.map.map.removeFeatures(this.map.featuresSchoolSource);
-        }
-      });
+      map.removeLocationFeature();
+      const address = event.data["wohnortdeskindes-address"];
+      if (address?.lon && address?.lat) {
+        const webMercatorCoords = [
+          parseFloat(address.lon),
+          parseFloat(address.lat),
+        ];
+        map.setLocationFeature(webMercatorCoords);
+      }
     } catch (error) {
       console.error("Fehler: ", error);
     }
@@ -81,17 +74,15 @@ export class MyForm {
    * @param {Object} gradeComponente - The grade component object.
    * @param {string} url - The URL to fetch the schools data from.
    */
-  showSchoolsOfKind(gradeComponente, url) {
+  async showSchoolsOfKind(map, event, url) {
     try {
-      gradeComponente.on("change", async (changed) => {
-        // this.map.map.removeFeatures(this.map.featuresSchoolSource);
-        const level = changed.data["grade-level"];
-        if (this.map.locationCoords && typeof level === "number") {
-          const res = await fetch(url + `/${level}`);
-          const schools = await res.json();
-          this.map.createSchoolFeatures(schools);
-        }
-      });
+      map.map.removeFeatures(map.featuresSchoolSource);
+      const level = event.data["grade-level"];
+      if (map.locationCoords && typeof level === "number") {
+        const res = await fetch(url + `/${level}`);
+        const schools = await res.json();
+        map.createSchoolFeatures(schools);
+      }
     } catch (error) {
       console.error("Fehler: ", error);
     }
