@@ -25,6 +25,6 @@
     "openrouteservice-js": "^0.3.2"
   },
   "devDependencies": {
-    "vite": "^4.4.9"
+    "vite": "^4.5.2"
   }
 }
