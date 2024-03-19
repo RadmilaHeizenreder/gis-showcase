@@ -5,9 +5,10 @@ import { Point } from "ol/geom";
 import { MyStyle } from "../styles/mystyle";
 import { PopUp } from "./popup.overlay";
 
-export class MapContainer extends BaseMap {
+export class MapContainer {
   constructor(target) {
-    super(target);
+    // super(target);
+    this.map = new BaseMap(target)
     this.locationCoords = undefined;
     this.locationLayer = undefined;
     this.popupOverlay = undefined;
@@ -27,7 +28,7 @@ export class MapContainer extends BaseMap {
     const feature = new Feature({
       geometry: new Point(coords),
     });
-    this.locationLayer = this.addDataToMap([feature], MyStyle.setLocationStyle);
+    this.locationLayer = this.map.addDataToMap([feature], MyStyle.setLocationStyle);
     this.locationCoords = coords;
 
     const view = this.map.getView()
@@ -35,7 +36,7 @@ export class MapContainer extends BaseMap {
   }
   removeLocationFeature() {
     this.locationCoords = undefined;
-    this.removeFeautres(this.locationLayer);
+    this.map.removeFeautres(this.locationLayer);
   }
 
   /**
@@ -55,18 +56,18 @@ export class MapContainer extends BaseMap {
             school,
           });
         });
-        this.addDataToMap(features, MyStyle.setStyle);
+        this.map.addDataToMap(features, MyStyle.setStyle);
       })
       .catch((error) => console.log("Fehler beim Abrufen der Daten", error));
   }
   getPopupOverlayData() {
-    this.popupOverlay = new PopUp();
+    this.popupOverlay = new PopUp()
     this.map.on("singleclick", (event) => {
       const features = this.map.getFeaturesAtPixel(event.pixel);
       const schoolFeature = features.find((feature) => feature.values_.school);
       if (schoolFeature) {
         this.popupOverlay.showPopupOverlay(schoolFeature, event.coordinate);
-        this.addOverlayToMap(this.popupOverlay.popupOverlay)
+        this.map.addOverlay(this.popupOverlay.popupOverlay)
         this.popupData = schoolFeature.getProperties().school
         // console.log(this.popupData);
       } else {

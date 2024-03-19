@@ -11,19 +11,25 @@ export default class CustomMapComponent extends Components.components.field {
     return super.render(`
       <div>
         <h3>${this.component.label}</h3>
-        <div ref="myMapContainer" class="map" id="${this.component.key}-map-container"></div>
+        <div ref="myMapContainer" class="map" id="map-container"></div>
     `);
   }
 
   attach(element) {
     super.attach(element);
 
-    this.map = new MapContainer(`${this.component.key}-map-container`);
+    this.map = new MapContainer(`map-container`); //${this.component.key}-
+    console.log('custom Component', this.map);
     return element;
   }
   getMap() {
     if (this.map) {
       return this.map
+    }
+  }
+  getPopUpOverlay() {
+    if (this.map) {
+      return this.map.popupOverlay
     }
   }
 }

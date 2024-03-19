@@ -3,10 +3,8 @@ import CustomMapComponent from "../gis-custom/gisComponent";
 Formio.use(CustomMapComponent);
 
 export class MyForm {
-  constructor(formJson) {
-    this.mapElement = undefined;
-    this.form = this.initForm(formJson);
-  }
+  mapElement = undefined;
+  form = undefined;
 
   async initForm(formJson) {
     try {
@@ -21,7 +19,6 @@ export class MyForm {
       // });
 
       if (this.mapElement && this.mapElement.getMap()) {
-        // this.mapElement = this.mapElement.getMap();
         this.showAddressInput();
       }
       this.submitEvent();
@@ -29,20 +26,12 @@ export class MyForm {
       console.log("formular error", e);
     }
   }
-  getMapContainer() {
-    this.form.then(() => {
-      console.log("myMap", this.mapElement);
-      return this.mapElement;
-    });
-    // return this.mapElement
-}
+
   getSchools(url) {
-    this.form.then(() => {
       if (this.mapElement && this.mapElement.getMap()) {
         this.mapElement = this.mapElement.getMap();
         this.mapElement.getAllSchool(url);
       }
-    });
   }
 
   showAddressInput() {

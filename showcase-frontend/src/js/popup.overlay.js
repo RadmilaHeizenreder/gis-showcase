@@ -1,6 +1,6 @@
 import Overlay from "ol/Overlay";
 
-export class PopUp {
+export class PopUp{
   constructor() {
     this.popupContainer = this.createPopupContainer();
     this.popupContent = this.createPopupContent();

@@ -7,9 +7,9 @@ import VectorSource from "ol/source/Vector";
 import { useGeographic } from "ol/proj";
 
 
-export class BaseMap {
+export class BaseMap extends Map{
   constructor(target) {
-    this.map = new Map({
+    super({
       target: target,
       view: new View({
         center: [848815.9677932085, 6793107.086027243],
@@ -45,7 +45,7 @@ export class BaseMap {
       updateWhileAnimating: true,
       style: style,
     });
-    this.addNewLayer(layer);
+    this.addLayer(layer);
     return layer
   }
   removeFeautres(source) {
@@ -54,34 +54,34 @@ export class BaseMap {
     }
   }
 
-  /** new layer */
-  addNewLayer(layer) {
-    this.map.addLayer(layer);
-  }
-  removeLayer(layer) {
-    this.map.removeLayer(layer);
-  }
+  // /** new layer */
+  // addNewLayer(layer) {
+  //   this.map.addLayer(layer);
+  // }
+  // removeLayer(layer) {
+  //   this.map.removeLayer(layer);
+  // }
 
-  /** drawing */
-  addInteractionDraw(draw) {
-    this.map.addInteraction(draw);
-  }
-  removeInteractionDraw(draw) {
-    this.map.removeInteraction(draw);
-  }
+  // /** drawing */
+  // addInteractionDraw(draw) {
+  //   this.map.addInteraction(draw);
+  // }
+  // removeInteractionDraw(draw) {
+  //   this.map.removeInteraction(draw);
+  // }
 
-  /** overlay */
-  addOverlayToMap(overlay) {
-    this.map.addOverlay(overlay);
-  }
-  getOverlays() {
-    this.map.getOverlays();
-  }
-  removeOverlay(overlay) {
-    this.map.removeOverlay(overlay);
-  }
+  // /** overlay */
+  // addOverlayToMap(overlay) {
+  //   this.map.addOverlay(overlay);
+  // }
+  // getOverlays() {
+  //   this.map.getOverlays();
+  // }
+  // removeOverlay(overlay) {
+  //   this.map.removeOverlay(overlay);
+  // }
   
-  addControlBtn(button) {
-    this.map.addControl(button);
-  }
+  // addControlBtn(button) {
+  //   this.map.addControl(button);
+  // }
 }
