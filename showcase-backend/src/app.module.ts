@@ -19,7 +19,7 @@ import { SchoolRouteEntity } from './school-routes/entities/school-route.entity'
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        // host: config.get<'string'>('TYPEORM_HOST'),
+        host: config.get<'string'>('TYPEORM_HOST'),
         username: config.get<string>('TYPEORM_USERNAME'),
         password: config.get<string>('TYPEORM_PASSWORD'),
         database: config.get<string>('TYPEORM_DATABASE'),
