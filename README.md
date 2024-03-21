@@ -6,9 +6,12 @@ Dieses Repository enthält den Code und die zugehörigen Ressourcen für das Sho
 
 Für die Umsetzung dieses Showcases wurden folgende Technologien und Bibliotheken verwendet:
 
-- **Form.io**: Eine leistungsstarke Bibliothek zur Erstellung und Verwaltung von digitalen Formularen.
+- **Formio/js**: Eine leistungsstarke Bibliothek zur Erstellung und Verwaltung von digitalen Formularen.
 - **OpenLayers**: Eine umfangreiche Bibliothek für die Integration und Manipulation von Karten in Webanwendungen.
 - **OpenRouteService-js**: Ein JavaScript-Client für die Nutzung der OpenRouteService API zur Routenberechnung und -visualisierung.
+- **Vite**: Ein Build-Tool für die Optimierung der JS- und Frontend-Entwicklung.
+- **NestJS**: Ein Framework für die Backend-Entwicklung.
+- **PostgreSQL mit PostGIS**: Eine Geodatenbank für die Datenverwaltung.
 
 ## Struktur des Repositories
 
