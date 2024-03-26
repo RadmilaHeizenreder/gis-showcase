@@ -18,8 +18,8 @@ Für die Umsetzung dieses Showcases wurden folgende Technologien und Bibliotheke
 - `./showcase-frontend/`: Enthält den Quellcode des Showcases, inklusive der Integration des GIS in die Formulare.
 - `./showcase-backend/`: Enthält die Geschäftslogik des Showcases.
 - `./showcase-backend/src/school-address/bootstrap/geodaten_schulen.geojson`: Schuldaten, die für die Darstellung der Schulen auf der Karte sind.
-- `./showcase-frontend/src/data/schulantrag.json`: Formular zur Schulanmeldung, das mit Hilfe der Formio-Bibliothek gerendert wird. Variante: Integration durch die htmlelement - Komponente
-- `./showcase-frontend/src/data/gis-componente.json`: Formular zur Schulanmeldung, das mit Hilfe der Formio-Bibliothek gerendert wird. Variante: Integration durch die custom - Komponente
+- `./showcase-frontend/src/data/schulantrag.json`: Formular zur Schulanmeldung, das mit Hilfe der Formio-Bibliothek gerendert wird. Variante: Integration durch die `htmlelement` - Komponente
+- `./showcase-frontend/src/data/gis-componente.json`: Formular zur Schulanmeldung, das mit Hilfe der Formio-Bibliothek gerendert wird. Variante: Integration durch die `custom` - Komponente
 
 ## Installation
 
